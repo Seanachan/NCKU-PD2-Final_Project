@@ -34,7 +34,7 @@ java {
 
 application {
     // Define the main class for the application.
-    mainClass = 'com.snake.Main'
+    mainClass = 'com.mario.Main'
 }
 
 tasks.named('test') {
