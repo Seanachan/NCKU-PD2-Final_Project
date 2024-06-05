@@ -12,7 +12,8 @@
 
 ## 背景
 
-實現近似於股市k線圖的背景，隨著散戶奔跑而起伏。
+Goal: 實現近似於股市k線圖的背景，隨著散戶奔跑而起伏。
+History: 歷經使用VScode手刻code之後發現過於繁雜，改使用Eclipse的windowBuidler作為開發工具。
 
 ### 深色背景
 
@@ -25,6 +26,9 @@ implementation 'com.formdev:flatlaf:3.4.1'
 ```
 
 ### 格線
+override`drawComponent(Graphics g)`，使格線畫在JPanel上。
+使用`g.drawLine(x1,y1,x2,y2)`，for迴圈迭代畫出格線。
 
+k線會隨著時間移動，而k線是固定在格線上的，因此要讓格線隨著時間往左移動。(TO-DO)
 
 ## 遊戲內容
