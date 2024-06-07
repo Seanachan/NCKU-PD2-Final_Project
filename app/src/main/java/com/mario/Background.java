@@ -10,32 +10,22 @@ import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.GridLayout;
 import java.awt.Insets;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.net.CookieHandler;
-
 import javax.swing.BoxLayout;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
-
-import java.util.ArrayDeque;
-import java.util.Deque;
-import java.util.Random;
-
-import javax.swing.Timer;
 import java.time.LocalDate;
 
 public class Background extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
-
-	public Background() {
+	Integer sPrice,hPrice,lPrice,ePrice,difPrice,dealNum;
+	Integer n1,n2,n3,n4,n5,n6,n7,n8,n9;
+	Background() {
 		setMinimumSize(new Dimension(1120, 630));
-		Integer sPrice,hPrice,lPrice,ePrice,difPrice,dealNum;
-		Integer n1,n2,n3,n4,n5,n6;
+		setResizable(false);//cannot adjust window size
 		sPrice=12;hPrice=12;lPrice=12;ePrice=12;difPrice=12;dealNum=12;
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
@@ -171,42 +161,42 @@ public class Background extends JFrame {
 		contentPane.add(panel_4);
 		panel_4.setLayout(new GridLayout(0, 1, 0, 0));
 		
-		JLabel num1 = new JLabel("New label");
+		JLabel num1 = new JLabel(String.format("%.2f", n1));
 		num1.setForeground(Color.WHITE);
 		num1.setAlignmentY(Component.TOP_ALIGNMENT);
 		num1.setAlignmentX(Component.CENTER_ALIGNMENT);
 		panel_4.add(num1);
 		
-		JLabel num2 = new JLabel("New label");
+		JLabel num2 = new JLabel(String.format("%.2f", n2));
 		num2.setForeground(Color.WHITE);
 		num2.setAlignmentY(Component.TOP_ALIGNMENT);
 		panel_4.add(num2);
 		
-		JLabel num3 = new JLabel("New label");
+		JLabel num3 = new JLabel(String.format("%.2f", n3));
 		num3.setForeground(Color.WHITE);
 		panel_4.add(num3);
 		
-		JLabel num4 = new JLabel("New label");
+		JLabel num4 = new JLabel(String.format("%.2f", n4));
 		num4.setForeground(Color.WHITE);
 		panel_4.add(num4);
 		
-		JLabel num5 = new JLabel("New label");
+		JLabel num5 = new JLabel(String.format("%.2f", n5));
 		num5.setForeground(Color.WHITE);
 		panel_4.add(num5);
 		
-		JLabel num6 = new JLabel("New label");
+		JLabel num6 = new JLabel(String.format("%.2f", n6));
 		num6.setForeground(Color.WHITE);
 		panel_4.add(num6);
 		
-		JLabel num7 = new JLabel("New label");
+		JLabel num7 = new JLabel(String.format("%.2f", n7));
 		num7.setForeground(Color.WHITE);
 		panel_4.add(num7);
 		
-		JLabel num8 = new JLabel("New label");
+		JLabel num8 = new JLabel(String.format("%.2f", n8));
 		num8.setForeground(Color.WHITE);
 		panel_4.add(num8);
 		
-		JLabel num9 = new JLabel("New label");
+		JLabel num9 = new JLabel(String.format("%.2f", n9));
 		num9.setForeground(Color.WHITE);
 		panel_4.add(num9);
 		
@@ -222,91 +212,16 @@ public class Background extends JFrame {
 		KGraph.setOpaque(false);
 		KGraph.setBackground(new Color(0,0,0,255));
 		pack();
+		setVisible(true);
+	}
+	void updateInfo(int sPrice, int ePrice, int hPrice, int lPrice){
+		this.sPrice=sPrice;
+		this.ePrice=ePrice;
+		this.hPrice=hPrice;
+		this.lPrice=lPrice;
 	}
 }
-class KLine{
-	int highest,lowest;
-	int startPrice,endPrice;
-	KLine(int highest,int lowest, int startPrice,int endPrice){
-		this.highest=highest;
-		this.lowest=lowest;
-		this.startPrice=startPrice;
-		this.endPrice=endPrice;
-	}
-}
-class KLineGraph extends JPanel implements ActionListener{
-	private static final long serialVersionUID = 1L;
-	int velocityX = -4;
-	int velocityY = 0;
-	Deque<KLine> KLineDeque;
-	Timer updateLineTimer;
-	Timer gameLoop;
-	
-	KLineGraph(){
-		KLineDeque = new ArrayDeque<>();
-		updateLineTimer = new Timer(1500,new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				setKLine();
-			}
-		});
-		updateLineTimer.start();
-	}
-	
-	public void setKLine() {
-		int randomStart,randomEnd,randomHigh,randomLow;
-        double increaseLimit=1.2,decreaseLimit=0.8;
-        Random rand = new Random();
-		if(KLineDeque.size()>50) KLineDeque.remove();
 
-        if(!KLineDeque.isEmpty()) randomStart=KLineDeque.getLast().endPrice;
-        else randomStart = (rand.nextInt(500)+500); 
-
-
-        randomEnd = rand.nextInt(220);
-        randomHigh = rand.nextInt(220);
-        randomLow = rand.nextInt(220);
-
-        System.out.println(randomEnd+" " +randomStart);
-		KLineDeque.addLast(new KLine(randomHigh,randomLow,randomStart,randomEnd));
-        paintComponent(getGraphics());
-	}
-	
-	public void paintComponent(Graphics g) {
-		super.paintComponent(g);
-		draw(g);
-	}
-	
-	public void draw(Graphics g) {
-		//highest, lowest, startPrice, endPrice
-		int i=10;
-		int startPrice,endPrice,highestPrice,lowestPrice;
-        
-		for(KLine line: KLineDeque) {
-			startPrice=line.startPrice;endPrice=line.endPrice;
-			highestPrice=line.highest;lowestPrice=line.lowest;
-			if(line.startPrice>line.endPrice) g.setColor(Color.GREEN);
-			else if(line.startPrice<line.endPrice) g.setColor(Color.RED);
-			else g.setColor(Color.WHITE);
-            Graphics2D g2d = (Graphics2D) g;
-			g2d.setStroke(new BasicStroke(3));
-			g.drawLine(i, highestPrice,i , lowestPrice);
-
-			g2d.setStroke(new BasicStroke(10));
-			g.drawLine(i, startPrice,i , endPrice);
-
-            i+=15;
-		}
-	}
-	
-	@Override 
-	public void actionPerformed(ActionEvent e) {
-		removeAll();
-		repaint();
-	}
-	
-	
-}
 class Grids extends JPanel{
     int width, height; int rows,cols;
     int BOARD_WIDTH = 1120,BOARD_HEIGHT=630;
@@ -319,14 +234,12 @@ class Grids extends JPanel{
     
     // @Override
     protected void paintComponent(Graphics g) {
-        //each time Grids object is created, paintComponent is called
+        //when initiated, paintComponent is called
         super.paintComponent(g);
         int i;
         Graphics2D g2d = (Graphics2D) g;
         g2d.setStroke(new BasicStroke(1));
         int frameStartX=0,frameEndX=this.getBounds().width;
-//        int frameStartX=10,frameEndX=BOARD_WIDTH-frameStartX;
-        // int frameStartY = 80,frameEndY = frameStartY+220;
         int frameStartY=10;int frameEndY=this.getBounds().height;
 
         // draw horizontal
