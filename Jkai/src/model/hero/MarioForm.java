@@ -52,9 +52,9 @@ public class MarioForm {
         return new MarioForm(newAnimation, false, false);
     }
 
-    public Fireball fire(boolean toRight, double x, double y) {
+    public FireBall fire(boolean toRight, double x, double y) {
         if(isFire){
-            return new Fireball(x, y + 48, fireballStyle, toRight);
+            return new FireBall(x, y + 48, fireballStyle, toRight);
         }
         return null;
     }
