@@ -12,9 +12,19 @@ public class EndFlag {
     public void updateLocation(){
         if(touched){
             if(getY() + getDimension().getHeight() >= 576){
-                setFalling(flase);
-
+                setFalling(false);
+                setVelY(0);
+                setY(576-getDimension().getHeight());
             }
+            super.updateLocation();
         }
+    }
+
+    public boolean isTouched() {
+        return touched;
+    }
+
+    public void setTouched(boolean touched) {
+        this.touched = touched;
     }
 }
