@@ -13,10 +13,12 @@ import java.util.Deque;
 import java.util.Random;
 import javax.swing.Timer;
 import java.lang.Thread;
+import java.math.RoundingMode;
+import java.math.BigDecimal;
 class KLine{
-	int highest,lowest;
-	int startPrice,endPrice;
-	KLine(int highest,int lowest, int startPrice,int endPrice){
+	double highest,lowest;
+	double startPrice,endPrice;
+	KLine(double highest,double lowest, double startPrice,double endPrice){
 		this.highest=highest;
 		this.lowest=lowest;
 		this.startPrice=startPrice;
@@ -30,7 +32,7 @@ class KLineGraph extends JPanel implements ActionListener{
 	Deque<KLine> KLineDeque;
 	Timer updateLineTimer;
 	Timer gameLoop;
-    int timeFrame = 250;
+    int timeFrame = 300;
 	public KLineGraph(){
 		this.KLineDeque = new ArrayDeque<>();
 		this.updateLineTimer = new Timer(timeFrame,new ActionListener() {
@@ -45,22 +47,24 @@ class KLineGraph extends JPanel implements ActionListener{
 	}
 	
 	public void setKLine() {
-		int randomStart,randomEnd,randomHigh,randomLow;
+		Double randomStart,randomEnd,randomHigh,randomLow;
         // double increaseLimit=1.2,decreaseLimit=0.8;
         Random rand = new Random();
-		if(KLineDeque.size()>30){
+		if(KLineDeque.size()>72){
 			KLineDeque.removeFirst();
 		}
         if(!KLineDeque.isEmpty()) 
 			randomStart=KLineDeque.getLast().endPrice;
-        else randomStart = (rand.nextInt(500)+500); 
+        else randomStart = (rand.nextDouble(500)+500); 
 
-        randomEnd = rand.nextInt(220)+100;
-        randomHigh = rand.nextInt(220)+100;
-        randomLow = rand.nextInt(220)+100;
-
+        randomEnd = rand.nextDouble(220)+100;
+        randomHigh = rand.nextDouble(220)+100;
+        randomLow = rand.nextDouble(220)+100;
+		
         // System.out.println(randomEnd+" " +randomStart);
 		KLineDeque.addLast(new KLine(randomHigh,randomLow,randomStart,randomEnd));
+		
+		
 	}
 	
 	@Override
@@ -77,8 +81,8 @@ class KLineGraph extends JPanel implements ActionListener{
 		// System.out.println("start drawing");
 		for(KLine line: KLineDeque) {
 			
-			startPrice=line.startPrice;endPrice=line.endPrice;
-			highestPrice=line.highest;lowestPrice=line.lowest;
+			startPrice=(int) Math.round(line.startPrice);endPrice=(int) Math.round(line.endPrice);
+			highestPrice=(int) Math.round(line.highest);lowestPrice=(int) Math.round(line.lowest);
 			if(line.startPrice>line.endPrice) g.setColor(Color.RED);
 			else if(line.startPrice<line.endPrice) g.setColor(Color.GREEN);
 			else g.setColor(Color.WHITE);
@@ -92,7 +96,22 @@ class KLineGraph extends JPanel implements ActionListener{
 			g.drawLine(i, startPrice,i , endPrice);
             i+=15;
 		}
+		Double randomStart=0.0,randomEnd=0.0,randomHigh=0.0,randomLow=0.0;
+		Integer randomAmount=0;
+		Random rand = new Random();
+		randomAmount = rand.nextInt(100000)+1000;
+		if(KLineDeque.size()>0){
+			randomEnd=KLineDeque.getLast().endPrice;
+			randomStart=KLineDeque.getLast().startPrice;
+			randomHigh=KLineDeque.getLast().highest;
+			randomLow=KLineDeque.getLast().lowest;
+		}
+		// System.out.println(randomStart);
+		// System.out.println(randomEnd);
+		Background.updateInfo(randomEnd-randomStart,randomAmount,randomHigh,randomLow,randomStart,randomEnd);
+		
 	}
+
 	static int cnt=0;
 	@Override 
 	public void actionPerformed(ActionEvent e) {
@@ -101,13 +120,13 @@ class KLineGraph extends JPanel implements ActionListener{
         
         repaint();
         
-        paintComponent(getGraphics());
+        
             try {
                 Thread.sleep(timeFrame*2);
-            } catch (InterruptedException e1) {
-                // TODO Auto-generated catch block
+            } catch (InterruptedException e1) { 
                 e1.printStackTrace();
             }    
+			paintComponent(getGraphics());
         
 	}
 }
