@@ -5,9 +5,9 @@ import model.GameObject;
 
 import java.awt.image.BufferedImage;
 
-public class FireBall extends GameObject {
+public class Fireball extends GameObject {
 
-    public FireBall(double x, double y, BufferedImage style, boolean toRight) {
+    public Fireball(double x, double y, BufferedImage style, boolean toRight) {
         super(x, y, style);
         setDimension(24, 24);
         setFalling(false);

@@ -1,11 +1,11 @@
 package model.prize;
 
-import java.awt.Rectangle;
+import java.awt.*;
 import manager.MapManager;
 import manager.GameEngine;
 import model.hero.Mario;
 
-public class Prize {
+public interface Prize {
     
     int getPoint();
     void reveal();
