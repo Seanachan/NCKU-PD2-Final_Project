@@ -21,14 +21,14 @@ public class Background extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
-	static Double sPrice=0.0,hPrice,lPrice,ePrice,difPriceInteger;
+	static Double startPriceDouble=0.0,highestPriceDouble,lowestPriceDouble,endPriceDouble,diffPriceDouble;
 	static Integer dealNumInteger=0;
 	Double n1,n2,n3,n4,n5,n6,n7,n8,n9;
 	static JLabel startPrice,endPrice, highestPrice, lowestPrice,diffPrice,dealAmount;
-	Background() {
-		setMinimumSize(new Dimension(1268, 708));
+	Background(int width,int height) {
+		setMinimumSize(new Dimension(width, height));
 		setResizable(false);//cannot adjust window size
-		hPrice=0.0;lPrice=1000000.0;difPriceInteger=0.0;dealNumInteger=0;
+		highestPriceDouble=0.0;lowestPriceDouble=1000000.0;diffPriceDouble=0.0;dealNumInteger=0;
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
@@ -84,7 +84,7 @@ public class Background extends JFrame {
 		gbl_panel_1.rowWeights = new double[]{0.0, 0.0, Double.MIN_VALUE};
 		panel_1.setLayout(gbl_panel_1);
 		
-		highestPrice = new JLabel("最高:"+hPrice.toString());
+		highestPrice = new JLabel("最高:"+highestPriceDouble.toString());
 		highestPrice.setForeground(Color.RED);
 		GridBagConstraints gbc_highestPrice = new GridBagConstraints();
 		gbc_highestPrice.anchor = GridBagConstraints.EAST;
@@ -93,7 +93,7 @@ public class Background extends JFrame {
 		gbc_highestPrice.gridy = 0;
 		panel_1.add(highestPrice, gbc_highestPrice);
 		
-		lowestPrice = new JLabel("最低:"+lPrice.toString());
+		lowestPrice = new JLabel("最低:"+lowestPriceDouble.toString());
 		lowestPrice.setForeground(Color.GREEN);
 		GridBagConstraints gbc_lowestPrice = new GridBagConstraints();
 		gbc_lowestPrice.anchor = GridBagConstraints.SOUTH;
@@ -136,7 +136,7 @@ public class Background extends JFrame {
 		gbl_panel_2.rowWeights = new double[]{0.0, 0.0, Double.MIN_VALUE};
 		panel_2.setLayout(gbl_panel_2);
 
-		diffPrice = new JLabel("漲跌:"+difPriceInteger.toString());
+		diffPrice = new JLabel("漲跌:"+diffPriceDouble.toString());
 		diffPrice.setForeground(Color.RED);
 		GridBagConstraints gbc_diffPrice = new GridBagConstraints();
 		gbc_diffPrice.fill = GridBagConstraints.BOTH;
@@ -215,9 +215,9 @@ public class Background extends JFrame {
 		setVisible(true);
 	}
 	public static void updateInfo(double dif, int amount, double h, double l,Double s,Double e){
-		if(sPrice==0.0){
-			sPrice=s;
-			ePrice=e;
+		if(startPriceDouble==0.0){
+			startPriceDouble=s;
+			endPriceDouble=e;
 			startPrice.setText("開盤: "+String.format("%.2f",s));
 			endPrice.setText("收盤: "+String.format("%.2f",e));
 		}
@@ -225,8 +225,8 @@ public class Background extends JFrame {
 		if(dif==0) diffPrice.setForeground(Color.WHITE);
 		if(dif>0) diffPrice.setForeground(Color.GREEN);
 		else diffPrice.setForeground(Color.RED);
-		difPriceInteger=Math.abs(dif);
-		diffPrice.setText("漲跌:"+String.format("%.2f",difPriceInteger));
+		diffPriceDouble=Math.abs(dif);
+		diffPrice.setText("漲跌:"+String.format("%.2f",diffPriceDouble));
 
 		if(dealNumInteger==amount) dealAmount.setForeground(Color.WHITE);
 		if(dealNumInteger>amount) dealAmount.setForeground(Color.GREEN);
@@ -234,11 +234,11 @@ public class Background extends JFrame {
 		dealNumInteger=amount;
 		dealAmount.setText("成交量:"+String.format("%d", dealNumInteger));
 
-		hPrice=Math.max(h,hPrice);
-		highestPrice.setText("最高:"+String.format("%.2f",hPrice));
+		highestPriceDouble=Math.max(h,highestPriceDouble);
+		highestPrice.setText("最高:"+String.format("%.2f",highestPriceDouble));
 		
-		if(l!=0) lPrice=Math.min(l,lPrice);
-		lowestPrice.setText("最低:"+String.format("%.2f",lPrice));
+		if(l!=0) lowestPriceDouble=Math.min(l,lowestPriceDouble);
+		lowestPrice.setText("最低:"+String.format("%.2f",lowestPriceDouble));
 	}
 }
 

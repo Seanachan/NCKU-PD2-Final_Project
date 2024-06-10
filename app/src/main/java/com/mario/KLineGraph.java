@@ -13,8 +13,6 @@ import java.util.Deque;
 import java.util.Random;
 import javax.swing.Timer;
 import java.lang.Thread;
-import java.math.RoundingMode;
-import java.math.BigDecimal;
 class KLine{
 	double highest,lowest;
 	double startPrice,endPrice;
@@ -27,8 +25,6 @@ class KLine{
 }
 class KLineGraph extends JPanel implements ActionListener{
 	private static final long serialVersionUID = 1L;
-	int velocityX = -4;
-	int velocityY = 0;
 	Deque<KLine> KLineDeque;
 	Timer updateLineTimer;
 	Timer gameLoop;

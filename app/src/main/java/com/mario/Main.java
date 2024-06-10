@@ -12,7 +12,7 @@ public class Main {
         UIManager.setLookAndFeel(new FlatDarculaLaf());
 
         //set background size 
-        int BOARD_WIDTH = 1268,BOARD_HEIGHT=708;
+        final int BOARD_WIDTH = 1268,BOARD_HEIGHT=708;
         
         // Background background = new Background(BOARD_WIDTH,BOARD_HEIGHT);//create background object  
         //background.show();
@@ -20,7 +20,7 @@ public class Main {
         EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					Background frame = new Background();
+					Background frame = new Background(BOARD_WIDTH, BOARD_HEIGHT);
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
