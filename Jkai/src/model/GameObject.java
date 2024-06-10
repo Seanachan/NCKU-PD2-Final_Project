@@ -27,11 +27,11 @@ public abstract class GameObject {
         falling = true;
     }
 
-    public void draw(Graphics2D g){
+    public void draw(Graphics g) {
         BufferedImage style = getStyle();
 
         if(style != null){
-            g.drawImage(style, (int)x, (int)y , null);
+            g.drawImage(style, (int)x, (int)y, null);
         }
     }
 
@@ -58,7 +58,7 @@ public abstract class GameObject {
         setY(y);
     }
 
-    public double detX(){
+    public double getX(){
         return x;
     }
 
