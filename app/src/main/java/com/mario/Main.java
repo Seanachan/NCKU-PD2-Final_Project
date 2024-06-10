@@ -13,11 +13,7 @@ public class Main {
         UIManager.setLookAndFeel(new FlatDarculaLaf());
 
         //set background size 
-<<<<<<< HEAD
         final int BOARD_WIDTH = 1268,BOARD_HEIGHT=708;
-=======
-        int BOARD_WIDTH = 1268,BOARD_HEIGHT=708;
->>>>>>> jKai
         
         // Background background = new Background(BOARD_WIDTH,BOARD_HEIGHT);//create background object  
         //background.show();
