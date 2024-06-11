@@ -4,22 +4,25 @@ package com.mario.object;
 import java.awt.Graphics;
 import java.awt.Rectangle;
 
-import com.mario.object.ObjectId;
-
+/*
+ * A GameObject must extends from this abstract and implements the methods
+ * This abstract class contains some basic methods mainly about setting position.
+ */
 public abstract class GameObject {
     private float x;
     private float y;
-    private ObjectId id;
+    private String id;
     private float velX , velY;
     private float width,height;
     private int scale;
 
-    public GameObject(float x , float y , ObjectId id ,float width , float height , int scale){
+    public GameObject(float x , float y , String id ,float width , float height , int scale){
         this.x = x*scale;
         this.y = y*scale;
         this.width = width*scale;
         this.height = height*scale;
         this.scale = scale;
+        this.id=id;
     }
     public abstract void tick();
     public abstract void render(Graphics g);
@@ -34,7 +37,7 @@ public abstract class GameObject {
     public void setY(float y){
         this.y =y;
     }
-    public void setId(ObjectId id){
+    public void setId(String id){
         this.id = id;
     }
     public void setVelX(float velX){
@@ -55,7 +58,7 @@ public abstract class GameObject {
     public float getY(){
         return y;
     }
-    public ObjectId getId(){
+    public String getId(){
         return id;
     }
     public float getVelX(){

@@ -3,12 +3,10 @@ package com.mario.object;
 import java.awt.Graphics;
 import java.awt.Rectangle;
 
-import com.mario.object.ObjectId;
-
 public class Block extends GameObject{
     public Block(int x, int y, int width, int height, int scale){
-        
-        super(x, y , ObjectId.Block , width , height , scale);
+        //calling constructor in GameObject
+        super(x, y , "Block" , width , height , scale);
     }
 
     @Override

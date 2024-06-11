@@ -6,7 +6,6 @@ import java.awt.Graphics2D;
 import java.awt.Rectangle;
 
 import com.mario.object.Handler;
-import com.mario.object.ObjectId;
 
 public class Player extends GameObject{
     private static final float WIDTH =16;
@@ -17,7 +16,7 @@ public class Player extends GameObject{
 
 
     public Player(float x ,float y , int scale , Handler handler){
-        super(x ,y, ObjectId.Player , WIDTH ,HEIGHT ,scale);
+        super(x ,y, "Player" , WIDTH ,HEIGHT ,scale);
     }
 
     @Override
