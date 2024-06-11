@@ -2,11 +2,11 @@
 
 ## 動機
 
-今日台股的表現讓投資人充滿了信心，包括我們在內，也都一邊看著code，一邊看著股票上上下下。適逢期末，我們想結合這個共同的興趣作為idea，使用java做出一個有趣的小遊戲。
+今日台股的表現讓投資人充滿了信心，包括我們在內，也都一邊看著code，一邊看著股票上上下下。我們想結合這個共同的興趣作為idea，使用java做出一個有趣的小遊戲。
 
 ## 內容
 
-以瑪利歐的遊戲作為基礎，我們除了做出外觀包裝上的更動外，也支援同時多人遊玩。
+以瑪利歐的遊戲作為基礎，我們除了做出外觀包裝上的更動，也支援多人遊玩。
 
 # 實作
 
@@ -48,6 +48,14 @@ repaint --timeFrame*2--> paintComponent
 
 ## 遊戲內容
 
+流程圖：
+
+```mermaid
+graph LR
+  id1([開始]) --> id2[Start Menu]--> id3[Load Map] --> Start
+  id12[End Page]
+```
+
 退後5pixel股價跌1%
 
 往前5pixel股價漲1%
@@ -60,6 +68,84 @@ repaint --timeFrame*2--> paintComponent
 
 往後>1120pixel 跌停
 
-## Graphs
+## Class Diagram
 
-[](https://)
+This is the Class in object folder:
+
+```mermaid
+classDiagram
+class Block{
+  +Block()//This
+  +tick()
+  +render()
+  +getBounds()
+}
+
+
+```
+
+This is the Class Diagram related to Background:
+
+```mermaid
+classDiagram
+Background <|--JPanel :extends
+Grids <|--JPanel  :extends
+KLineGraph <|--JPanel :extends
+KLineGraph --|> ActionListener :implements
+KLineGraph ..|> KLine
+Main --|> Background
+class Main{
+  final BOARD_HEIGHT
+  final BOARD_WIDTH
+}
+class Background{
+  +String GRids
+  -JPanel contentPane
+  static Integer dealNumInteger
+  static Double startPriceDouble
+  static Double highestPriceDouble
+  static Double lowestPriceDouble
+  static Double endPriceDouble
+  static Double diffPriceDouble
+
+  static JLabel startPrice
+  static JLabel endPrice 
+  static JLabel highestPrice
+  static JLabel lowestPrice
+  static JLabel diffPrice
+  static JLabel dealAmount
+  Background()
+  +static updateInfo()
+}
+class Grids{
+  +Grids()
+  -int width
+  -int height
+  -int rows
+  -int columns
+
+  # paintComponent()
+}
+class KLine{
+  -double  highest
+  -double  lowest
+  -double  startPrice
+  -double  endPrice
+  +KLine(highest, lowest, startPrice, endPrice)
+}
+
+class KLineGraph {
+  
+  Deque<KLine> KLineDeque
+  Timer updateLineTimer
+  Timer gameLoop
+  int timeFrame
+  +KLineGraph()
+  + setKLine()
+  + paintComponent(g)
+  + draw()
+  +actionPerformed(ActionEvent e)
+ 
+}
+
+```
