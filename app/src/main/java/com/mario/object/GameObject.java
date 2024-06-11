@@ -15,7 +15,6 @@ public abstract class GameObject {
     private float velX , velY;
     private float width,height;
     private int scale;
-
     public GameObject(float x , float y , String id ,float width , float height , int scale){
         this.x = x*scale;
         this.y = y*scale;

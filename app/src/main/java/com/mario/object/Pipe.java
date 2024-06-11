@@ -6,7 +6,7 @@ import java.awt.Rectangle;
 public class Pipe extends GameObject{
     private boolean enterable; // to determine whether I can enter the pipe or not
     public Pipe(int x ,int y , int width , int height, int scale , boolean enterable){
-        super(x,y,ObjectId.Pipe, width , height , scale);
+        super(x,y,"Pipe" , width , height , scale);
         this.enterable = enterable;
     }
     @Override

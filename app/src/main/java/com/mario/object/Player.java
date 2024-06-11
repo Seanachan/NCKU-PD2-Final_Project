@@ -23,7 +23,8 @@ public class Player extends GameObject{
     public void tick() {
         setX(getVelX()+getX());
         setY(getVelY()+getY());
-       //applyGravity();
+       applyGravity();
+       collision();
     }
 
     @Override
@@ -35,7 +36,7 @@ public class Player extends GameObject{
     private void collision(){
         for(int i=0; i<handler.getGameObjs().size() ; i++){
             GameObject temp = handler.getGameObjs().get(i);
-            if(temp.getId() == ObjectId.Block || temp.getId() == ObjectId.Pipe){
+            if(temp.getId() == "Block" || temp.getId() == "Pipe"){
                 if(getBounds().intersects(temp.getBounds()));
             }
             if(getBounds().intersects(temp.getBounds())){

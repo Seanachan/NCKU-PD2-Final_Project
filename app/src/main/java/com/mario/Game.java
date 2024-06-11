@@ -6,6 +6,7 @@ import java.awt.Graphics;
 import java.awt.image.BufferStrategy;
 
 import com.mario.object.Player;
+import com.mario.object.Block;
 import com.mario.object.Handler;
 import com.mario.object.KeyInput;
 
@@ -34,7 +35,12 @@ public class Game extends Canvas implements Runnable {
         this.addKeyListener(new KeyInput(handler));
         //temp 
         handler.setPlayer(new Player(32, 32, 1, handler));
-
+        for(int i=0 ; i< 20 ; i++){
+            handler.addObj(new Block(i*32, 32*10, 32, 32, 1));
+        }
+        for(int i=0 ; i<30 ; i++){
+            handler.addObj(new Block(i*32 ,32*15,2,32,1));
+        }
         // new Windows(WINDOW_WIDTH , WINDOW_HEIGHT , NAME, this);
 
         start();
