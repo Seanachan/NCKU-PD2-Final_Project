@@ -11,17 +11,17 @@ import com.mario.object.KeyInput;
 
 public class Game extends Canvas implements Runnable {
     //GAME CONSTANT
-    private static final int MILLIS_PER_SECOND = 1000;
+    private static final int MILLIS_PER_SECOND = 1000; // 
     private static final int NANOS_PER_SEC = 1000000000;
-    private static final double NUM_TICKS  = 60.0;
+    private static final double NUM_TICKS  = 60.0;  // number of ticks (update)
     private static final String NAME = "Super Mario Bros";
 
     private static final int WINDOW_WIDTH = 960 ;
     private static final int WINDOW_HEIGHT = 720;
-    //GAME VARIABLE
-    private boolean running;
+    //GAME VARIABLE 
+    private boolean running;  //hold the game to find whether the game is start or not
     // GAME COMPONENT
-    private Thread thread;
+    private Thread thread; //thread is a runnable object when we called start method we will also start this object to execute runnable
     private Handler handler;
     public static void main(String args[]){
         new Game(); 
@@ -41,12 +41,12 @@ public class Game extends Canvas implements Runnable {
     }
     private synchronized void start(){
         thread = new Thread(this);
-        thread.start();
+        thread.start(); //it will call the "run" method
         running = true;
     }
     private synchronized void stop(){
         try {
-            thread.join();
+            thread.join(); // we need to use try catch to  execute this code 讓執行緒的執行結果整合起來
             running = false;
         } catch (InterruptedException e) {
             // TODO: handle exception
@@ -55,7 +55,7 @@ public class Game extends Canvas implements Runnable {
     }
 
     @Override
-    public void run(){
+    public void run(){  //it contains in the Runnable abstract method 
         long lastTime = System.nanoTime();
         double amountOfTicks = NUM_TICKS;
         double ns = NANOS_PER_SEC / amountOfTicks;
@@ -70,12 +70,12 @@ public class Game extends Canvas implements Runnable {
             lastTime = now;
 
             while(delta >= 1){
-                tick();
+                tick(); // update everything about the game state
                 updates++;
                 delta --;
             }
             if(running){
-                render();
+                render(); //control the redering (everything shows on the screen)
                 frames ++;
             }
             
@@ -89,10 +89,10 @@ public class Game extends Canvas implements Runnable {
         stop();
     }
 
-    private void tick(){
+    private void tick(){ //用來更新當前狀態(player)
         handler.tick();
     }
-    private void render(){
+    private void render(){  // 也是更新用的 主要是更新螢幕show 出來的畫面
         BufferStrategy buf = this.getBufferStrategy();
         if(buf == null){
             this.createBufferStrategy(3);

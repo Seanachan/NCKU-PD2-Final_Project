@@ -80,6 +80,17 @@ class Block{
   +render()
   +getBounds()
 }
+class Handler{
+  +Handler()
+  +tick()
+  +render()
+  +addObj()
+  +removeObj()
+  +getGameObj()
+  +setPlayer()
+  +removePlayer()
+  +getPlayer()
+}
 
 
 ```
