@@ -1,11 +1,11 @@
 package com.mario;
 import com.formdev.flatlaf.FlatDarculaLaf;
 
-import javafx.scene.Scene;
-import javafx.scene.layout.BorderPane;
-import javafx.application.Application;
-import javafx.fxml.FXMLLoader;
-
+// import javafx.scene.Scene;
+// import javafx.scene.layout.BorderPane;
+// import javafx.application.Application;
+// import javafx.fxml.FXMLLoader;
+// test
 import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.UIManager;
@@ -23,7 +23,7 @@ public class Main {
         EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					BorderPane root = new BorderPane();
+					// BorderPane root = new BorderPane();
 	        		// Scene scene = new Scene(root,BOARD_WIDTH,BOARD_HEIGHT);
 					Background frame = new Background(BOARD_WIDTH, BOARD_HEIGHT);
 					frame.setVisible(true);
