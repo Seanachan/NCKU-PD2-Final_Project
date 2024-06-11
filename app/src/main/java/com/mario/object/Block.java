@@ -13,19 +13,16 @@ public class Block extends GameObject{
 
     @Override
     public void tick() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'tick'");
+        
     }
 
     @Override
     public void render(Graphics g) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'render'");
+       
     }
 
     @Override
     public Rectangle getBounds() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getBounds'");
+       return new Rectangle((int) getX() , (int) getY() , (int)getWidth() , (int) getHeight());
     }
 }

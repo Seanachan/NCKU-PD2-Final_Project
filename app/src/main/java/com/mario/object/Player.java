@@ -33,7 +33,30 @@ public class Player extends GameObject{
         g.fillRect((int)getX(), (int)getY(), (int)WIDTH, (int)HEIGHT);
         showBounds(g);
     }
+    private void collision(){
+        for(int i=0; i<handler.getGameObjs().size() ; i++){
+            GameObject temp = handler.getGameObjs().get(i);
+            if(temp.getId() == ObjectId.Block || temp.getId() == ObjectId.Pipe){
+                if(getBounds().intersects(temp.getBounds()));
+            }
+            if(getBounds().intersects(temp.getBounds())){
+                setY(temp.getY()-getHeight());
+                setVelY(0);
+                jumped = false;
+            }
+            if(getBoundsTop().intersects(temp.getBounds())){
+                setY(temp.getY() + temp.getHeight());
+                setVelY(0);
+            }
+            if(getBoundsRight().intersects(temp.getBounds())){
+                setX(temp.getX() -getWidth());
 
+            }
+            if(getBoundsLeft().intersects(temp.getBounds())){
+                setX(temp.getX() + temp.getWidth());
+            }
+        }
+    }
     @Override
     public Rectangle getBounds() {
         return new Rectangle((int)(getX()+getWidth()/2 - getWidth()/4) , (int)(getY() +getHeight()/2) , (int)getWidth()/2 , (int)getHeight()/2);
