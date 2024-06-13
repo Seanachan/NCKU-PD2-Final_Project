@@ -1,6 +1,5 @@
 package com.mario;
 import java.awt.BasicStroke;
-import java.awt.BorderLayout;
 import java.awt.CardLayout;
 import java.awt.Color;
 import java.awt.Component;
@@ -20,13 +19,9 @@ import javax.swing.JPanel;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.border.EmptyBorder;
-
-import javafx.scene.layout.Border;
-
 import java.time.LocalDate;
 
 public class Background extends JFrame {
-
     private static final long serialVersionUID = 1L;
     private JPanel contentPane;
     private CardLayout cardLayout;
@@ -36,20 +31,21 @@ public class Background extends JFrame {
     static JLabel startPrice, endPrice, highestPrice, lowestPrice, diffPrice, dealAmount;
 
     Background(int width, int height) {
-        setMinimumSize(new Dimension(width, height));
-        setResizable(false);//cannot adjust window size
-        highestPriceDouble = 0.0;
-        lowestPriceDouble = 1000000.0;
-        diffPriceDouble = 0.0;
-        dealNumInteger = 0;
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        // setBounds(100, 100, 450, 300);
-        
         cardLayout = new CardLayout();
         contentPane = new JPanel(cardLayout);
         contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
         contentPane.setBackground(Color.BLACK);
         setContentPane(contentPane);
+
+        setMinimumSize(new Dimension(width, height));
+        setResizable(false);//not adjustable window size
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setBounds(100, 100, 450, 300);
+        
+        highestPriceDouble = 0.0;
+        lowestPriceDouble = 1000000.0;
+        diffPriceDouble = 0.0;
+        dealNumInteger = 0;
         
         // Add main panel
         JPanel mainPanel = createMainPanel();
@@ -60,8 +56,6 @@ public class Background extends JFrame {
         contentPane.add(startScene, "StartScene");
 
         cardLayout.show(contentPane,"StartScene");
-
-        // cardLayout.show(contentPane, "MainPanel"); // Show start 
 
         pack();
         setVisible(true);
@@ -192,7 +186,7 @@ public class Background extends JFrame {
         panel_4.setBackground(Color.BLACK);
         panel_4.setLayout(new GridLayout(0, 1, 0, 0));
         
-        n9 = 220.0; n8 = 320.0; n7 = 420.0; n6 = 520.0;         n5 = 620.0; n4 = 720.0; n3 = 820.0; n2 = 920.0; n1 = 1020.0;
+        n9 = 220.0; n8 = 320.0; n7 = 420.0; n6 = 520.0; n5 = 620.0; n4 = 720.0; n3 = 820.0; n2 = 920.0; n1 = 1020.0;
         JLabel num1 = new JLabel(String.format("%.2f", n1));
         num1.setForeground(Color.WHITE);
         num1.setAlignmentY(Component.TOP_ALIGNMENT);
@@ -263,12 +257,6 @@ public class Background extends JFrame {
             Grids.setShouldDraw(true);
         });
 
-        // Calculate position to center the button slightly below the image center
-        int buttonWidth = startButton.getPreferredSize().width;
-        int buttonHeight = startButton.getPreferredSize().height;
-        int x = (img.getIconWidth() - buttonWidth) / 2;
-        int y = (img.getIconHeight() / 2) + 80; // Adjust vertical position here
-
         startButton.setBounds(571, 423, 107, 45); // Set button bounds
 
         // Create a layered pane to overlay components
@@ -327,7 +315,7 @@ class Grids extends JPanel {
     private static final long serialVersionUID = 1L;
     int width, height;
     int rows, cols;
-    int BOARD_WIDTH = 1120, BOARD_HEIGHT = 630;
+    int BOARD_WIDTH = 1268, BOARD_HEIGHT = 708;
     static boolean shouldDraw = false; // Add this flag
     Grids(int w, int h, int r, int c) {
         this.width = w;
