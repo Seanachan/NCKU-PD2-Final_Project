@@ -1,9 +1,9 @@
-package com.tngo.mario.framework;
+package com.mario.game.framework;
 
 import java.awt.*;
 import java.util.LinkedList;
 
-import com.tngo.mario.objects.CanvasItem;
+import com.mario.game.objects.CanvasItem;
 
 public class Handler {
 

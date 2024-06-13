@@ -1,6 +1,6 @@
-package com.tngo.mario.objects;
+package com.mario.game.objects;
 
-import static com.tngo.mario.framework.Level.getQTree;
+import static com.mario.game.framework.Level.getQTree;
 
 import java.awt.*;
 import java.awt.geom.Line2D;

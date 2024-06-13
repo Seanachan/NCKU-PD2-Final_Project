@@ -1,4 +1,4 @@
-package com.tngo.mario.framework;
+package com.mario.game.framework;
 
 import java.awt.image.BufferedImage;
 import java.io.File;
@@ -10,8 +10,8 @@ import java.util.Map;
 
 import javax.imageio.ImageIO;
 
-import com.tngo.mario.utils.BufferedImageLoader;
-import com.tngo.mario.utils.SpriteSheet;
+import com.mario.game.utils.BufferedImageLoader;
+import com.mario.game.utils.SpriteSheet;
 
 public class Texture {
 
@@ -21,12 +21,9 @@ public class Texture {
 
     public Texture(){
         texMap = new HashMap<>();
-        BufferedImageLoader loader = new BufferedImageLoader();
         
         BufferedImage image = null;
         
-        // File file = new File("/res/blocks.png");
-        // System.out.println(file.getName());
         try {
             // System.out.println("image: "+image);
             image = ImageIO.read(new FileInputStream("src/res/level-items.png"));

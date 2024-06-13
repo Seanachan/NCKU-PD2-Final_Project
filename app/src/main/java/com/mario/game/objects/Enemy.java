@@ -1,11 +1,11 @@
-package com.tngo.mario.objects;
+package com.mario.game.objects;
 
-import static com.tngo.mario.framework.Level.itemIsVisible;
-import static com.tngo.mario.framework.Level.removeItem;
+import static com.mario.game.framework.Level.itemIsVisible;
+import static com.mario.game.framework.Level.removeItem;
 
 import java.awt.image.BufferedImage;
 
-import com.tngo.mario.Game;
+import com.mario.game.Game;
 
 public class Enemy extends GameObject {
 

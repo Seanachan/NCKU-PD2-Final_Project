@@ -1,7 +1,7 @@
-package com.tngo.mario.utils;
+package com.mario.game.utils;
 
-import com.tngo.mario.Game;
-import com.tngo.mario.objects.Player;
+import com.mario.game.Game;
+import com.mario.game.objects.Player;
 
 public class Camera {
 

@@ -43,10 +43,12 @@ class KLineGraph extends JPanel implements ActionListener{
 	}
 	
 	public void setKLine() {
+		if(!Grids.shouldDraw) {return;}
+		
 		Double randomStart,randomEnd,randomHigh,randomLow;
         // double increaseLimit=1.2,decreaseLimit=0.8;
         Random rand = new Random();
-        if(!Grids.shouldDraw) {return;}
+
 		if(KLineDeque.size()>72){
 			KLineDeque.removeFirst();
 		}

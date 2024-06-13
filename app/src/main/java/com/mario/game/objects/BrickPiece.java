@@ -1,9 +1,9 @@
-package com.tngo.mario.objects;
+package com.mario.game.objects;
 
-import static com.tngo.mario.framework.Level.removeItem;
+import static com.mario.game.framework.Level.removeItem;
 
-import com.tngo.mario.Game;
-import com.tngo.mario.framework.Texture;
+import com.mario.game.Game;
+import com.mario.game.framework.Texture;
 
 public class BrickPiece extends CanvasItem {
 

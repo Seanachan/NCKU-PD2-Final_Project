@@ -1,18 +1,19 @@
-package com.tngo.mario.framework;
+package com.mario.game.framework;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import javax.swing.JPanel;
 
 import javax.imageio.ImageIO;
 
-import com.tngo.mario.Game;
-import com.tngo.mario.objects.CanvasItem;
-import com.tngo.mario.objects.GameObject;
-import com.tngo.mario.objects.Player;
-import com.tngo.mario.utils.*;
+import com.mario.game.Game;
+import com.mario.game.objects.CanvasItem;
+import com.mario.game.objects.GameObject;
+import com.mario.game.objects.Player;
+import com.mario.game.utils.*;
 
 public class Level {
 
@@ -29,16 +30,15 @@ public class Level {
         backgroundItemsHandler = new Handler();
 
         if ( backgroundColor == "skyblue" ) {
-            this.backgroundColor = new Color( 92, 148, 252 );
+//            this.backgroundColor = new Color( 92, 148, 252 );
+        	this.backgroundColor=new Color(92,148,252,0);
         } else {
             this.backgroundColor = new Color( 0, 0, 0);
         }
 
         // Load stage from image
-        BufferedImageLoader loader = new BufferedImageLoader();
         
         try {
-            System.out.println(model);
             stageImage = ImageIO.read( new FileInputStream(  model) );
         } catch (FileNotFoundException e) {
             // TODO Auto-generated catch block
@@ -82,7 +82,7 @@ public class Level {
         // End of cam
         g2d.translate( -cam.getX(), -cam.getY() );
     }
-
+    
     public static QuadTree getQTree() { return qtree; }
 
     public void loadStage() {
@@ -160,4 +160,5 @@ public class Level {
             ( item.getX() < -cam.getX() && item.getX() + item.getWidth() > -cam.getX() )
         );
     }
+
 }

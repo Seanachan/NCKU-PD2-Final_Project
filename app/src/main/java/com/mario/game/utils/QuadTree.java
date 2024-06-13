@@ -1,10 +1,10 @@
-package com.tngo.mario.utils;
+package com.mario.game.utils;
 
 import java.awt.*;
 import java.util.*;
 import java.util.List;
 
-import com.tngo.mario.objects.GameObject;
+import com.mario.game.objects.GameObject;
 
 public class QuadTree {
 

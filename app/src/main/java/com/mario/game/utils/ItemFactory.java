@@ -1,8 +1,8 @@
-package com.tngo.mario.utils;
+package com.mario.game.utils;
 
-import com.tngo.mario.Game;
-import com.tngo.mario.framework.Texture;
-import com.tngo.mario.objects.*;
+import com.mario.game.Game;
+import com.mario.game.framework.Texture;
+import com.mario.game.objects.*;
 
 public class ItemFactory {
 

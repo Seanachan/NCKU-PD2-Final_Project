@@ -1,4 +1,4 @@
-package com.tngo.mario.framework;
+package com.mario.game.framework;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;

@@ -1,11 +1,11 @@
-package com.tngo.mario;
+package com.mario.game;
 
 import java.awt.*;
 import java.awt.image.BufferStrategy;
 
-import com.tngo.mario.framework.Level;
-import com.tngo.mario.framework.Texture;
-import com.tngo.mario.utils.Window;
+import com.mario.game.framework.Level;
+import com.mario.game.framework.Texture;
+import com.mario.game.utils.Window;
 
 public class Game extends Canvas implements Runnable {
 
@@ -15,7 +15,7 @@ public class Game extends Canvas implements Runnable {
     public static int WIDTH, HEIGHT;
     Level currentLevel;
     static Texture tex;
-
+    
     public synchronized void start() {
         if ( running ) return;
 
@@ -77,22 +77,14 @@ public class Game extends Canvas implements Runnable {
         }
 
         Graphics g = bs.getDrawGraphics();
-        //////////////////////////////////////
 
-        // Draw here
         currentLevel.render(g);
 
-        //////////////////////////////////////
         g.dispose();
         bs.show();
     }
 
     public static Texture getTex(){
         return tex;
-    }
-
-    // Original game block size = 16, scaling it to 32; 16w by 15h
-    public static void main(String[] args) {
-        new Window(32*16, 32*15, "Super Mario Game Prototype", new Game());
     }
 }

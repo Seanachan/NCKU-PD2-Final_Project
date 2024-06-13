@@ -1,4 +1,4 @@
-package com.tngo.mario.utils;
+package com.mario.game.utils;
 
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
