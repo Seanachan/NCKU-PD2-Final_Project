@@ -21,7 +21,6 @@ import javax.swing.JButton;
 import javax.swing.border.EmptyBorder;
 
 import com.mario.game.Game;
-import com.mario.Grids;
 import java.time.LocalDate;
 
 public class Background extends JFrame {
