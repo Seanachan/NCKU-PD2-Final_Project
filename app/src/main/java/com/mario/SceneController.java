@@ -1,8 +1,6 @@
 package com.mario;
 
-import javafx.application.Platform;
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 
 import java.io.IOException;
 
@@ -12,7 +10,6 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import javafx.stage.WindowEvent;
 
 public class SceneController {
     final int BOARD_WIDTH = 1268,BOARD_HEIGHT=708;   
