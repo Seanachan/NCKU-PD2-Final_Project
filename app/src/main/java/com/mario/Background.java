@@ -22,6 +22,7 @@ import javax.swing.border.EmptyBorder;
 import java.time.LocalDate;
 
 public class Background extends JFrame {
+    final int BOARD_WIDTH = 1268,BOARD_HEIGHT=708;
     private static final long serialVersionUID = 1L;
     private JPanel contentPane;
     private CardLayout cardLayout;
@@ -30,14 +31,14 @@ public class Background extends JFrame {
     Double n1, n2, n3, n4, n5, n6, n7, n8, n9;
     static JLabel startPrice, endPrice, highestPrice, lowestPrice, diffPrice, dealAmount;
 
-    Background(int width, int height) {
+    Background() {
         cardLayout = new CardLayout();
         contentPane = new JPanel(cardLayout);
         contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
         contentPane.setBackground(Color.BLACK);
         setContentPane(contentPane);
 
-        setMinimumSize(new Dimension(width, height));
+        setMinimumSize(new Dimension(BOARD_WIDTH, BOARD_HEIGHT));
         setResizable(false);//not adjustable window size
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setBounds(100, 100, 450, 300);
