@@ -8,8 +8,14 @@ import javax.imageio.ImageIO;
 import javax.swing.JPanel;
 
 public class StartScene extends JPanel{
-	public StartScene() throws IOException {
+	public StartScene() {
 		
-		BufferedImage startSceneImg = ImageIO.read(new File("app/src/img/startScene"));	
+		// try {
+		// 	// BufferedImage startSceneImg = ImageIO.read(new File("app/src/img/Scene2"));
+
+		// } catch (IOException e) {
+		// 	e.printStackTrace();
+		// }	
+
 	}
 }
