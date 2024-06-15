@@ -10,10 +10,11 @@ public class ItemFactory {
 
     public CanvasItem create_object( int x, int y, String itemType ) {
         CanvasItem object;
-
+        //y = y+100;
         switch ( itemType ){
             case "ground":
                 object = new GameObject( x, y, 32, 32, itemType, tex.get( "ground-normal" ) );
+                System.out.println("x: "+x +"y: " + y);
                 break;
             case "ground2":
                 object = new GameObject( x, y, 32, 32, itemType, tex.get( "ground2-normal" ) );

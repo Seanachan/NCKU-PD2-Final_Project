@@ -28,8 +28,8 @@ public class Level {
         gameObjectHandler = new Handler();
         backgroundItemsHandler = new Handler();
 
-        if ( backgroundColor == "skyblue" ) {
-            this.backgroundColor = new Color( 92, 148, 252 );
+        if ( backgroundColor == "black" ) {
+            this.backgroundColor = new Color( 0, 0, 0 );
         } else {
             this.backgroundColor = new Color( 0, 0, 0);
         }
