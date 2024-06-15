@@ -40,7 +40,7 @@ public class Texture {
             image = ImageIO.read(new FileInputStream("src/res/image.png"));
             player_sprites = new SpriteSheet(image);
 
-            image = ImageIO.read(new FileInputStream("src/res/enemies.png"));
+            image = ImageIO.read(new FileInputStream("src/res/newEnemy.png"));
             enemy_sprites = new SpriteSheet(image);
             
         } catch (Exception e){

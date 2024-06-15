@@ -2,6 +2,8 @@ package com.tngo.mario.objects;
 
 import static com.tngo.mario.framework.Level.removeItem;
 
+import java.awt.Color;
+import java.awt.Font;
 import java.awt.Graphics;
 
 import com.tngo.mario.Game;
@@ -29,6 +31,7 @@ public class Player extends GameObject {
     }
     public Player( float x, float y ) {
         super( x, y, 32, 32, "player", "white" );
+        
         updateSprites();
     }
 
@@ -64,6 +67,7 @@ public class Player extends GameObject {
 
         setVelocityX(5);
         if ( !movingRight ) {
+            //System.out.println(x +" "+ y);
             movingRight = true;
             direction = "right";
             if ( !isFalling() ) state = "running";
@@ -128,7 +132,9 @@ public class Player extends GameObject {
         setSprites( tex.get( search ) );
         setAnimationSpeed(2);
     }
-
+    final int CASTLE_X = 6432 ;
+    final int CASTLE_Y = 383;
+    public Game game = new Game();
     public void handleCollision( int contactPoint, GameObject neighbor ) {
         super.handleCollision( contactPoint, neighbor );
         //System.out.println(neighbor.getType());
@@ -145,13 +151,14 @@ public class Player extends GameObject {
                 die();
             }
         }
-        // if(neighbor.getType() == "castle-normal"){
-        //     System.out.println("shit man");
-        //     EndGame end = new EndGame();
-        //     end.endGame();
-            
-        // }
-        // Player movements
+        if (x <  6549 && x > 6424 &&
+            y  <= 385 && y>=256) {
+            System.out.println("end");
+            System.out.println(game.getRunning());
+            //game.setRunning(true);
+            returnScore(scoreCount);
+            System.out.println(scoreCount);
+        }
         if ( contactPoint == 2 ) {
             stopMoveRight();
         } else if ( contactPoint == 3 ) {
@@ -166,6 +173,7 @@ public class Player extends GameObject {
         }
 
     }
+    
     
     public void die() {
         liveCount +=1;
@@ -207,11 +215,33 @@ public class Player extends GameObject {
         drawLivesCount(g);
     }
     
-    private void drawLivesCount(Graphics g) {
-        g.drawString("Lives: " + (3 - liveCount), 10, 10);
-        //g.setFont("Ariel");
 
+    private void drawLivesCount(Graphics g) {
+        g.setColor(Color.WHITE); // Set the text color
+        g.setFont(new Font("Arial", Font.BOLD, 20)); // Set the font
+        g.drawString("Lives: " + (3 - liveCount), 10, 30); // Adjust the position
     }
+
+    public int returnScore(int scoreCount){
+        return scoreCount;
+    }
+
+    // private void drawEndGameMessage(Graphics g, String message) {
+    //     g.setColor(Color.RED); // Set the text color
+    //     g.setFont(new Font("Arial", Font.BOLD, 50)); // Set the font
+    //     g.drawString(message, Game.WIDTH / 2 - 150, Game.HEIGHT / 2); // Center the text
+    // }
+
+    // public void endGameWithWin() {
+    //     //gameEnded = true;
+    //     state = "idle";
+    //     size = "";
+    //     style = "";
+    //     direction = "";
+    //     updateSprites();
+    //     System.out.println("win");
+    //     // Additional game end handling such as stopping the game loop, showing a win screen, etc.
+    // }
 }
 
 

@@ -58,7 +58,7 @@ public class Game extends Canvas implements Runnable {
 
             if ( System.currentTimeMillis() - timer > 1000 ) {
                 timer += 1000;
-                System.out.println("FPS: " + frames + " TICKS: " + updates);
+                //System.out.println("FPS: " + frames + " TICKS: " + updates);
                 frames = 0;
                 updates = 0;
             }
@@ -88,7 +88,12 @@ public class Game extends Canvas implements Runnable {
     public static Texture getTex(){
         return tex;
     }
-
+    public boolean getRunning(){
+        return running;
+    }
+    public void setRunning(boolean running){
+        this.running = running;
+    }
       
 
     // Original game block size = 16, scaling it to 32; 16w by 15h

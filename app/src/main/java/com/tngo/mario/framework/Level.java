@@ -135,6 +135,7 @@ public class Level {
                     backgroundItemsHandler.addItem( factory.create_object( x, y, "bush-large" ) );
                 } else if ( red == 96 && green == 96 && blue == 96 ) {
                     backgroundItemsHandler.addItem( factory.create_object( x, y, "castle-normal" ) );
+                    System.out.println(x+" & "+y);
                 }  else if ( red == 244 && green == 212 && blue == 180 ) {
                     gameObjectHandler.addItem( factory.create_object( x, y, "goomba" ) );
                 } else if ( red == 211 && green == 184 && blue == 156 ) {
