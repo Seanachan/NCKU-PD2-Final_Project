@@ -26,7 +26,7 @@ dependencies {
 
 application {
     // Define the main class for the application.
-    mainClass = 'com.doge.DogeGame'
+    mainClass = 'com.ncku_game.PlayerSocket'
 }
 
 tasks.named('test') {
