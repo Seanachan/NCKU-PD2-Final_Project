@@ -47,12 +47,11 @@ public class DogeGame {
 	    rulesDialog.setLocationRelativeTo(frame);
 	    JTextArea rulesTextArea = new JTextArea();
 	    rulesTextArea.setText(" Game Rules :\n\n" +
-	            " 1. Goal: Collect \" System.out.print(\"NCKU\") \"    \n" +
-	            " 2. Elapsed Time Equals To Your Score   \n" +
-	            " 3. Arrow keys control the direction. Press Space to pause   \n" +
-	            " 4. If you eat the wrong letter (symbol), you will lose one letter (symbol).   \n" +
-	            " 5. If you collide with your own body, you will need to restart.   \n" +
-	            " 6. If you exceeds 180 sec, it will be considered failure.   \n\n" 
+	            " 1. Goal: Dodge the chives on the path to let Doge Coin surrvive.    \n" +
+	            " 2. Elapsed Time Equals To Your Score, total of 100 points.   \n" +
+	            " 3. Press space bar to fly, but the gravity will also drag you down.   \n" +
+                " 4. The total amount of time is 60 seconds, try the best you can!   \n\n" +
+	            " 5. !! THE GAME WILL START AS SOON AS YOU CLOSE THIS TAB !!   \n" 
 	            );
 
 	    rulesTextArea.setEditable(false);

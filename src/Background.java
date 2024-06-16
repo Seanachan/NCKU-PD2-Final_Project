@@ -59,10 +59,6 @@ public class Background {
         // Add main panel
         JPanel mainPanel = createMainPanel();
         contentPane.add(mainPanel, "MainPanel");
-        
-        // Add start scene panel
-
-        cardLayout.show(contentPane,"StartScene");
     }
 
     private JPanel createMainPanel() {
@@ -256,7 +252,6 @@ public class Background {
             endPriceDouble = e;
             startPrice.setText("開盤: " + String.format("%.2f", s));
             endPrice.setText("收盤: " + String.format("%.2f", e));
-
         }
 
         if (dif == 0) diffPrice.setForeground(Color.WHITE);
@@ -282,8 +277,5 @@ public class Background {
         cardLayout.show(contentPane, "MainPanel");
     }
 
-    public void showStartScene() {
-        cardLayout.show(contentPane, "StartScene");
-    }
 }
 
