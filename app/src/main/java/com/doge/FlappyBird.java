@@ -75,10 +75,10 @@ public class FlappyBird extends JPanel implements ActionListener,KeyListener{
         // topPipeImg = new ImageIcon(getClass().getResource("./chives_reversed.png")).getImage();
         // bottomPipeImg = new ImageIcon(getClass().getResource("./chives.png")).getImage();
         try {
-            backgroundImg = ImageIO.read(new FileInputStream("src/res/flappybirdbg.png"));
-            birdImg = ImageIO.read(new FileInputStream("src/res/d_coin.png"));
-            bottomImg = ImageIO.read(new FileInputStream("src/res/chives.png"));
-            topPipeImg = ImageIO.read(new FileInputStream("src/res/chives_reversed.png"));
+            backgroundImg = ImageIO.read(new FileInputStream("app/src/res/flappybirdbg.png"));
+            birdImg = ImageIO.read(new FileInputStream("app/src/res/d_coin.png"));
+            bottomImg = ImageIO.read(new FileInputStream("app/src/res/chives.png"));
+            topPipeImg = ImageIO.read(new FileInputStream("app/src/res/chives_reversed.png"));
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         } catch (IOException e) {

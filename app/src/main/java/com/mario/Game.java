@@ -53,7 +53,7 @@ public class Game extends Canvas implements Runnable {
 
         tex = new Texture();
 
-        currentLevel = new Level( this, "src/res/level1.png", "black" );
+        currentLevel = new Level( this, "app/src/res/level1.png", "black" );
     }
 
     public void run() {
@@ -127,6 +127,6 @@ public class Game extends Canvas implements Runnable {
 
     // Original game block size = 16, scaling it to 32; 16w by 15h
     public static void main(String[] args) {
-        new Window(1268, 708, "Super Mario Game Prototype", new com.tngo.mario.Game());
+        new Window(1268, 708, "Super Mario Game Prototype", new Game());
     }
 }

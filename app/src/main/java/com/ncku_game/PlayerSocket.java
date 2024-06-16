@@ -7,7 +7,7 @@ import com.code.GameCode;
 import com.code.Panel;
 import com.doge.DogeGame;
 import com.mario.utils.Window;
-import com.tngo.mario.Game;
+import com.mario.Game;
 
 
 
@@ -269,7 +269,7 @@ public class PlayerSocket {
 							}
 							case 3:{
 								//join third game
-								com.mario.utils.Window window = new com.mario.utils.Window(1268, 708, "Super Mario Game Prototype", new com.tngo.mario.Game());
+								Window window = new Window(1268, 708, "Super Mario Game Prototype", new Game());
 								while(true) {
 									if(Window.isComplete) {
 											System.out.println("Third game finished");

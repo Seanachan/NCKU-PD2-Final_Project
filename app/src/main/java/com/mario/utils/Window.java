@@ -11,7 +11,7 @@ public class Window {
     public static int score = 0;
     public static boolean isComplete = false;
     public static boolean shouldShowScore=false;
-    public Window(int width, int height, String title, com.tngo.mario.Game game){
+    public Window(int width, int height, String title, Game game){
         game.setPreferredSize(new Dimension(width, height));
         game.setMinimumSize(new Dimension(width, height));
         game.setMaximumSize(new Dimension(width, height));
