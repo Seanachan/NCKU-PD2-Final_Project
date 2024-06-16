@@ -14,7 +14,7 @@ public class FlappyBird extends JPanel implements ActionListener,KeyListener{
     //Images
     Image backgroundImg,birdImg,topPipeImg,bottomImg,bottomPipeImg;
     //Bird
-    int birdX = BOARD_WIDTH/4,birdY = BOARD_HEIGHT/20;
+    int birdX = BOARD_WIDTH/4,birdY = 0;
     int birdWidth = 38,birdHeight=38;
 
     boolean gameOver = false;
@@ -49,7 +49,7 @@ public class FlappyBird extends JPanel implements ActionListener,KeyListener{
     //game logic
     Bird bird;
     int velocityX = -4;//moves pipe to left
-    int velocityY = -2;//move bird up/down
+    int velocityY = -4;//move bird up/down
     int gravity = 1;
 
     List<Pipe> pipes;
@@ -78,15 +78,13 @@ public class FlappyBird extends JPanel implements ActionListener,KeyListener{
             @Override
             public void actionPerformed(ActionEvent e ){
                 placePipes();
-                KLineGraph.setKLine();
+                KLineGraph.setKLine(bird.y);
                 KLineGraph.draw(getGraphics());
                 gameTime--;
                 
             }
         } );
-        gameLoop=new Timer(1000/60,this);
-
-        // showRules();
+        gameLoop=new Timer(1000/90,this);
 
         new Background(this);
         // placesPipesTimer.start();
@@ -130,17 +128,18 @@ public class FlappyBird extends JPanel implements ActionListener,KeyListener{
         
         if(gameTime<=0) gameOver=true;
         if(gameOver){
-            g.setFont(new Font("Arial", Font.PLAIN,32));
-            g.drawString("Game Over: "+ score,this.getWidth()/2-100,this.getWidth()/2);
+            g.setFont(new Font("Arial", Font.PLAIN,50));
+            g.drawString("Game Over!",this.getWidth()/2-170,this.getHeight()/2-30);
+            g.drawString("   Score: "+ score,this.getWidth()/2-170,this.getHeight()/2+30);
             DogeGame.score=(int) Math.round(score);
-            System.out.println("game over");
             
             gameLoop.stop();
             placesPipesTimer.stop();
             KLineGraph.gameLoop.stop();
+            
             try {
-                repaint();
-                Thread.sleep(2000);
+                repaint();    
+                Thread.sleep(3000);
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -148,7 +147,7 @@ public class FlappyBird extends JPanel implements ActionListener,KeyListener{
             
         }else{
             // g.drawString("Score: "+score.toString(),this.getWidth()/10,this.getWidth()/10);
-            g.drawString("Time: "+gameTime,this.getWidth()/10,this.getWidth()/10);
+            g.drawString("Time: "+gameTime,this.getWidth()/10,this.getHeight()/10);
             g.drawString("Score: "+(int) Math.round(((double) (60-gameTime)/60)*100),this.getWidth()-this.getWidth()/10,this.getWidth()/10);
             score=(int) Math.round(((double) (60-gameTime)/60)*100);
         }
@@ -162,7 +161,7 @@ public class FlappyBird extends JPanel implements ActionListener,KeyListener{
         if(bird.y<=0){
             bird.y=0;
         }
-        else if(bird.y>this.getHeight()+100){
+        else if(bird.y>this.getHeight()+40){
             gameOver=true;
         }
         
