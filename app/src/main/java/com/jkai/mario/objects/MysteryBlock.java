@@ -1,9 +1,9 @@
-package com.tngo.mario.objects;
+package com.jkai.mario.objects;
 
-import static com.tngo.mario.framework.Level.addItemAtStart;
+import static com.jkai.mario.framework.Level.addItemAtStart;
 
-import com.tngo.mario.Game;
-import com.tngo.mario.framework.Texture;
+import com.jkai.mario.Game;
+import com.jkai.mario.framework.Texture;
 
 public class MysteryBlock extends GameObject {
 

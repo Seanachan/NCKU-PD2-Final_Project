@@ -1,8 +1,8 @@
-package com.tngo.mario.objects;
+package com.jkai.mario.objects;
 
 import java.awt.*;
 
-import com.tngo.mario.Game;
+import com.jkai.mario.Game;
 
 public class PipeHead extends GameObject {
 

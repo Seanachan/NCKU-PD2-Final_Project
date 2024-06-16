@@ -1,13 +1,14 @@
-package com.tngo.mario.objects;
+package com.jkai.mario.objects;
 
-import static com.tngo.mario.framework.Level.removeItem;
+import static com.jkai.mario.framework.Level.removeItem;
 
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
 
-import com.tngo.mario.Game;
-import com.tngo.mario.framework.Texture;
+import com.jkai.mario.Game;
+import com.jkai.mario.framework.Texture;
+import com.jkai.mario.utils.Window;
 
 public class Player extends GameObject {
 
@@ -21,17 +22,19 @@ public class Player extends GameObject {
     private String style = "normal";
     private String direction = "right";
     public int liveCount =0;
-    private int scoreCount =0;
+    private static int scoreCount =0;
 
 //    public Player( float x, float y, String color ) {
 //        super( x, y, 32, 32, "player", color );
 //    }
-    public int getScoreCount(){
+    public static int getScoreCount(){
         return scoreCount;
+    }
+    public static void setScoreCount(int setScore){
+        scoreCount += setScore;
     }
     public Player( float x, float y ) {
         super( x, y, 32, 32, "player", "white" );
-        
         updateSprites();
     }
 
@@ -135,6 +138,7 @@ public class Player extends GameObject {
     final int CASTLE_X = 6432 ;
     final int CASTLE_Y = 383;
     public Game game = new Game();
+    public boolean check = false;
     public void handleCollision( int contactPoint, GameObject neighbor ) {
         super.handleCollision( contactPoint, neighbor );
         //System.out.println(neighbor.getType());
@@ -151,13 +155,18 @@ public class Player extends GameObject {
                 die();
             }
         }
+        
         if (x <  6549 && x > 6424 &&
             y  <= 385 && y>=256) {
             System.out.println("end");
-            System.out.println(game.getRunning());
+            // gdrawWin(this.getGraphics());
+            // render();
+            //System.out.println(game.getRunning());
             //game.setRunning(true);
             returnScore(scoreCount);
-            System.out.println(scoreCount);
+            
+            game.stop();
+            //System.out.println(scoreCount);
         }
         if ( contactPoint == 2 ) {
             stopMoveRight();
@@ -176,12 +185,12 @@ public class Player extends GameObject {
     
     
     public void die() {
-        liveCount +=1;
+        
         isDead = true;
         falling = false;
         setVelocityY(0);
 
-        
+        liveCount +=1;
         if(liveCount <3){
             this.x = 32;
             this.y = 384;
@@ -195,12 +204,9 @@ public class Player extends GameObject {
             direction = "";
             scoreCount =0;
             updateSprites();
+            game.stop()  ;
             return ;
-            //freeze the rest of the level
         }
-        
-        
-        
     }
     public void resetPlayer(){
         isDead = false;
@@ -212,19 +218,39 @@ public class Player extends GameObject {
     }
     public void render(Graphics g) {
         super.render(g);
+        gdrawWin(g);
         drawLivesCount(g);
+        
     }
-    
+    public void gdrawWin(Graphics g){
+        //System.out.println("gdrawWin: "+check);
+        if(check == true){
+            g.setColor(Color.WHITE); // Set the text color
+            g.setFont(new Font("Arial", Font.BOLD, 20)); // Set the font
+            g.drawString("Win", 450, 650);
+        }
+    }
 
     private void drawLivesCount(Graphics g) {
         g.setColor(Color.WHITE); // Set the text color
         g.setFont(new Font("Arial", Font.BOLD, 20)); // Set the font
+        if(liveCount>=3) liveCount=3;
         g.drawString("Lives: " + (3 - liveCount), 10, 30); // Adjust the position
+        if(liveCount >=3){
+            g.setFont(new Font("Arial",Font.BOLD,70));
+            g.drawString("Game Over", 450,650);
+            // render(g);
+            // thread.interrupt();
+            game.stop();
+        }
+        
     }
 
     public int returnScore(int scoreCount){
         return scoreCount;
     }
+
+    
 
     // private void drawEndGameMessage(Graphics g, String message) {
     //     g.setColor(Color.RED); // Set the text color
@@ -246,14 +272,4 @@ public class Player extends GameObject {
 
 
 
-// class EndGame{
-//     private boolean running = true;
-//     public void endGame(){
-//         running = false;
-//         showEndScreen();
-//     }
-//     private void showEndScreen(){
-//         System.out.println("shut the fuck up");
-//     }
 
-// }

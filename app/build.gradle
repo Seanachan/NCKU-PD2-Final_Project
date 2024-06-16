@@ -26,7 +26,7 @@ dependencies {
 
 application {
     // Define the main class for the application.
-    mainClass = 'com.tngo.mario.Game'
+    mainClass = 'com.jkai.mario.Game'
 }
 
 tasks.named('test') {

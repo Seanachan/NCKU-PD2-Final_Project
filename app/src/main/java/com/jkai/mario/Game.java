@@ -1,15 +1,18 @@
-package com.tngo.mario;
+package com.jkai.mario;
 
 import java.awt.*;
 import java.awt.image.BufferStrategy;
 
-import com.tngo.mario.framework.Level;
-import com.tngo.mario.framework.Texture;
-import com.tngo.mario.utils.Window;
+import javax.swing.JOptionPane;
+
+import com.jkai.mario.framework.Level;
+import com.jkai.mario.framework.Texture;
+import com.jkai.mario.utils.Window;
 
 public class Game extends Canvas implements Runnable {
 
     private boolean running = false;
+    //private boolean gameOver = false;
     private Thread thread;
 
     public static int WIDTH, HEIGHT;
@@ -22,6 +25,26 @@ public class Game extends Canvas implements Runnable {
         running = true;
         thread = new Thread(this);
         thread.start();
+    }
+    public synchronized void stop() {
+        System.out.println("stop");
+        if (!running) {
+            //thread.sleep(3);
+            
+            return;
+        }
+        running = false;
+        //gameOver = true; 
+        System.out.println(running);
+        try {
+            thread.join();
+            
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        
+        System.out.println("stop()");
+        
     }
 
     private void init() {
@@ -63,6 +86,8 @@ public class Game extends Canvas implements Runnable {
                 updates = 0;
             }
         }
+        render();
+        //stop(); 
     }
 
     private void tick() {
@@ -84,6 +109,10 @@ public class Game extends Canvas implements Runnable {
         g.dispose();
         bs.show();
     }
+    // private void showGameOverDialog() {
+    //     // Ensure the game over message is shown in a dialog box
+    //     JOptionPane.showMessageDialog(this, "Game Over!", "Game Over", JOptionPane.INFORMATION_MESSAGE);
+    // }
 
     public static Texture getTex(){
         return tex;

@@ -1,9 +1,10 @@
-package com.tngo.mario.objects;
+package com.jkai.mario.objects;
 
-import static com.tngo.mario.framework.Level.removeItem;
+import static com.jkai.mario.framework.Level.removeItem;
 
-import com.tngo.mario.Game;
-import com.tngo.mario.framework.Texture;
+import com.jkai.mario.Game;
+import com.jkai.mario.framework.Texture;
+import com.jkai.mario.objects.Player;
 
 public class Coin extends CanvasItem {
 
@@ -11,11 +12,12 @@ public class Coin extends CanvasItem {
     private float originalY;
     private float velocityY;
     protected final float gravity = 0.5f;
-
+    
     public Coin( float x, float y ) {
         super( x, y, 12, 32, "white" );
         setSprites( tex.get( "jumpingcoin" ) );
         setAnimationSpeed(3);
+        Player.setScoreCount(10);
         originalY = y;
         velocityY = -8;
     }

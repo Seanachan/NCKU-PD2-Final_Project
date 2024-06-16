@@ -1,11 +1,11 @@
-package com.tngo.mario.objects;
+package com.jkai.mario.objects;
 
-import static com.tngo.mario.framework.Level.itemIsVisible;
-import static com.tngo.mario.framework.Level.removeItem;
-
+import static com.jkai.mario.framework.Level.itemIsVisible;
+import static com.jkai.mario.framework.Level.removeItem;
+import com.jkai.mario.objects.Player;
 import java.awt.image.BufferedImage;
 
-import com.tngo.mario.Game;
+import com.jkai.mario.Game;
 
 public class Enemy extends GameObject {
 
@@ -24,7 +24,10 @@ public class Enemy extends GameObject {
 
         if ( velocityX == 0 && itemIsVisible(this) ) moveLeft();
         if ( x < 0 ) moveRight();
-        if ( y >= Game.HEIGHT ) removeItem(this);
+        if ( y >= Game.HEIGHT ) {
+            Player.setScoreCount(5);
+            removeItem(this);
+        }
     }
 
     public void handleCollision( int contactPoint, GameObject neighbor ) {

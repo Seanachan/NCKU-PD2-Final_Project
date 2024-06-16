@@ -1,6 +1,6 @@
-package com.tngo.mario.objects;
+package com.jkai.mario.objects;
 
-import static com.tngo.mario.framework.Level.getQTree;
+import static com.jkai.mario.framework.Level.getQTree;
 
 import java.awt.*;
 import java.awt.geom.Line2D;
@@ -19,6 +19,7 @@ public class GameObject extends CanvasItem {
 
     public GameObject( float x, float y, float width, float height, String type, String color ) {
         super(x, y, width, height, color);
+
         this.type = type;
     }
 

@@ -1,10 +1,10 @@
-package com.tngo.mario.objects;
+package com.jkai.mario.objects;
 
-import static com.tngo.mario.framework.Level.addItem;
-import static com.tngo.mario.framework.Level.removeItem;
+import static com.jkai.mario.framework.Level.addItem;
+import static com.jkai.mario.framework.Level.removeItem;
 
-import com.tngo.mario.Game;
-import com.tngo.mario.framework.Texture;
+import com.jkai.mario.Game;
+import com.jkai.mario.framework.Texture;
 
 public class BrickBlock extends GameObject {
 

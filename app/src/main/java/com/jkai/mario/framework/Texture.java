@@ -1,4 +1,4 @@
-package com.tngo.mario.framework;
+package com.jkai.mario.framework;
 
 import java.awt.image.BufferedImage;
 import java.io.File;
@@ -10,8 +10,8 @@ import java.util.Map;
 
 import javax.imageio.ImageIO;
 
-import com.tngo.mario.utils.BufferedImageLoader;
-import com.tngo.mario.utils.SpriteSheet;
+import com.jkai.mario.utils.BufferedImageLoader;
+import com.jkai.mario.utils.SpriteSheet;
 
 public class Texture {
 

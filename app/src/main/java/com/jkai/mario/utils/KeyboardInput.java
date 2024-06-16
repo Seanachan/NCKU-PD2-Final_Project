@@ -1,9 +1,9 @@
-package com.tngo.mario.utils;
+package com.jkai.mario.utils;
 
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 
-import com.tngo.mario.objects.Player;
+import com.jkai.mario.objects.Player;
 
 public class KeyboardInput extends KeyAdapter {
 

@@ -1,9 +1,9 @@
-package com.tngo.mario.objects;
+package com.jkai.mario.objects;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
 
-import com.tngo.mario.framework.Animation;
+import com.jkai.mario.framework.Animation;
 
 public class CanvasItem {
 

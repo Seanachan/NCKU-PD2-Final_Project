@@ -1,4 +1,4 @@
-package com.tngo.mario.framework;
+package com.jkai.mario.framework;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
@@ -24,7 +24,7 @@ public class Animation {
         } else if ( color == "blue" ) {
             fallbackColor = Color.blue;
         } else if ( color == "red" ) {
-            fallbackColor = Color.red;
+            fallbackColor = Color.black;
         } else if ( color == "green" ) {
             fallbackColor = Color.green;
         } else if ( color == "yellow" ) {

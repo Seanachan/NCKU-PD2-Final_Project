@@ -1,4 +1,4 @@
-package com.tngo.mario.framework;
+package com.jkai.mario.framework;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
@@ -8,11 +8,11 @@ import java.io.IOException;
 
 import javax.imageio.ImageIO;
 
-import com.tngo.mario.Game;
-import com.tngo.mario.objects.CanvasItem;
-import com.tngo.mario.objects.GameObject;
-import com.tngo.mario.objects.Player;
-import com.tngo.mario.utils.*;
+import com.jkai.mario.Game;
+import com.jkai.mario.objects.CanvasItem;
+import com.jkai.mario.objects.GameObject;
+import com.jkai.mario.objects.Player;
+import com.jkai.mario.utils.*;
 
 public class Level {
 
