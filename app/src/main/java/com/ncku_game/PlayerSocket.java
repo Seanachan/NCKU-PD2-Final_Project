@@ -6,6 +6,8 @@ import java.net.*;
 import com.code.GameCode;
 import com.code.Panel;
 import com.doge.DogeGame;
+import com.mario.utils.Window;
+import com.tngo.mario.Game;
 
 
 
@@ -267,27 +269,21 @@ public class PlayerSocket {
 							}
 							case 3:{
 								//join third game
-								// GameFoodie gameFoodie = new GameFoodie();	
-								// gameFoodie.launch();
-								// while(true) {
-								// 	if(foodie.GameFoodie.isComplete) {
-								// 		try {
-								// 			Thread.sleep(5000);
-								// 			gameFoodie.closeBGM();
-								// 		} catch (InterruptedException e1) {
-								// 			e1.printStackTrace();
-								// 		}										
-								// 		break;
-								// 	}
-								// }
-								// tempScore = ("" + foodie.GameImage.score);//record score
-								// sentToServer = true;
-								// receiveFromServer = true;
-								// changePage = false;
+								com.mario.utils.Window window = new com.mario.utils.Window(1268, 708, "Super Mario Game Prototype", new com.tngo.mario.Game());
+								while(true) {
+									if(Window.isComplete) {
+											System.out.println("Third game finished");
+										break;
+									}
+								}
+								tempScore = ("" + Window.score);//record score
+								sentToServer = true;
+								receiveFromServer = true;
+								changePage = false;
 								
-								// gameFoodie.closeWindow();
-								// gameFoodie = null;
-								break;		
+								window.frame.setVisible(false);
+								window.frame = null;
+								break;	
 							}
 						}
 						break;
