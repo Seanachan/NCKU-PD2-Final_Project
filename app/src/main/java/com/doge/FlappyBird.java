@@ -1,9 +1,14 @@
 package com.doge;
 import java.awt.*;
 import java.awt.event.*;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
+
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import javax.swing.ImageIcon;
 
@@ -65,10 +70,21 @@ public class FlappyBird extends JPanel implements ActionListener,KeyListener{
         addKeyListener(this);
 
         //load images
-        backgroundImg = new ImageIcon(getClass().getResource("flappybirdbg.png")).getImage();
-        birdImg = new ImageIcon(getClass().getResource("d_coin.png")).getImage();
-        topPipeImg = new ImageIcon(getClass().getResource("./chives_reversed.png")).getImage();
-        bottomPipeImg = new ImageIcon(getClass().getResource("./chives.png")).getImage();
+        // backgroundImg = new ImageIcon(getClass().getResource("src/res/flappybirdbg.png")).getImage();
+        // birdImg = new ImageIcon(getClass().getResource("d_coin.png")).getImage();
+        // topPipeImg = new ImageIcon(getClass().getResource("./chives_reversed.png")).getImage();
+        // bottomPipeImg = new ImageIcon(getClass().getResource("./chives.png")).getImage();
+        try {
+            backgroundImg = ImageIO.read(new FileInputStream("src/res/flappybirdbg.png"));
+            birdImg = ImageIO.read(new FileInputStream("src/res/d_coin.png"));
+            bottomImg = ImageIO.read(new FileInputStream("src/res/chives.png"));
+            topPipeImg = ImageIO.read(new FileInputStream("src/res/chives_reversed.png"));
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        System.out.println(bottomImg!=null);
 
         // Bird
         bird = new Bird(birdImg);
@@ -106,8 +122,8 @@ public class FlappyBird extends JPanel implements ActionListener,KeyListener{
         
         topPipe.y=randomPipeY;
         botPipe.y=topPipe.y+pipeHeight+openSpace;
-        pipes.add(topPipe);
         pipes.add(botPipe);
+        pipes.add(topPipe);
     }
 
     @Override
@@ -115,7 +131,6 @@ public class FlappyBird extends JPanel implements ActionListener,KeyListener{
         super.paintComponent(g);
         draw(g);
     }
-    
     public void draw(Graphics g){
         //background
         // g.drawImage(backgroundImg, 0, 0, BOARD_WIDTH,BOARD_HEIGHT,null);

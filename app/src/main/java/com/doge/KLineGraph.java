@@ -47,12 +47,12 @@ class KLineGraph extends JPanel implements ActionListener{
 		}
         if(!KLineDeque.isEmpty()) 
 			randomStart=KLineDeque.getLast().endPrice;
-        else randomStart = (rand.nextDouble(200)+200); 
+        else randomStart = (double) (rand.nextInt(200)+200); 
 
 		randomEnd=(double) birdY;
 
-        randomHigh = randomStart+(rand.nextDouble(0.2))*randomStart;
-        randomLow = randomStart-rand.nextDouble(0.2)*randomStart;
+        randomHigh = randomStart+(rand.nextDouble()*0.2)*randomStart;
+        randomLow = randomStart-rand.nextDouble()*0.2*randomStart;
 
 		if(randomHigh>708) randomHigh=708.0;
 		if(randomLow<0) randomLow=0.0;
