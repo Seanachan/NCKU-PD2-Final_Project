@@ -159,12 +159,8 @@ public class Player extends GameObject {
         if (x <  6549 && x > 6424 &&
             y  <= 385 && y>=256) {
             System.out.println("end");
-            // gdrawWin(this.getGraphics());
-            // render();
-            //System.out.println(game.getRunning());
-            //game.setRunning(true);
-            returnScore(scoreCount);
-            
+            Window.score = scoreCount;
+            Window.isCompleted = true;
             game.stop();
             //System.out.println(scoreCount);
         }
@@ -202,7 +198,9 @@ public class Player extends GameObject {
             size = "";
             style = "";
             direction = "";
-            scoreCount =0;
+            scoreCount =1;
+            Window.score = scoreCount;
+            Window.isCompleted = true;
             updateSprites();
             game.stop()  ;
             return ;
@@ -246,9 +244,7 @@ public class Player extends GameObject {
         
     }
 
-    public int returnScore(int scoreCount){
-        return scoreCount;
-    }
+    
 
     
 

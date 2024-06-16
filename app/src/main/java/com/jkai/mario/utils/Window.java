@@ -9,8 +9,10 @@ import java.awt.*;
 
 public class Window {
     JFrame frame;
-    public static int score;
+    
+    public static int score ;
     public static boolean shouldShowScore=false;
+    public static boolean isCompleted = false;
     public Window(int width, int height, String title, Game game){
         game.setPreferredSize(new Dimension(width, height));
         game.setMinimumSize(new Dimension(width, height));
@@ -33,18 +35,7 @@ public class Window {
                 break;
             }
         }
-        // @Override
-        //     public void windowClosing(WindowEvent e) {
-        //         game.stop();
-        //         System.exit(0);
-        //     }
-        // });
         
-        // frame.setResizable(false);
-        // frame.setLocationRelativeTo(null);
-        // frame.add(game);
-        // frame.setVisible(true);
-        // game.start(
     }
     public void showScore(){
         frame.getGraphics().drawString(String.format("%d", score), frame.getWidth()/2, frame.getHeight()/2);
