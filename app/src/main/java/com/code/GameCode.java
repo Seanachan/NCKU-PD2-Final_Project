@@ -31,7 +31,7 @@ public class GameCode extends JFrame {
 	Clip bgm = null;
 	
 	public void launch() {
-		loadBGM("app/src/res/sound/piano.mp3");
+		loadBGM("app/src/res/sound/piano.wav");
 		playBGM();
 		setFocusableWindowState(true);
 		
