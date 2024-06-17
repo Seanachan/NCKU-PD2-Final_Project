@@ -633,17 +633,9 @@ graph LR
 ```
 # 困難與解決
 
-## 1.圖片路徑
+## 1.專案龐大，不知道如何協作
 
-我們發現Windows和MacOS在讀取照片的時候，所需的路徑不一樣，因此增加了`OsUtil` 來判斷使用者系統，並給予正確的路徑。
-
-Windows:
-
-`app/src/res/path-to-img `
-
-MacOS:
-
-`src/res/path-to-img`
+=>主要依照遊戲劃分工作，並使用專案管理工具
 
 ## 2.原本要串Online data base
 
@@ -653,3 +645,7 @@ MacOS:
 ## 3.一開始不知道怎麼讓server和client準確互相傳送訊息
 
 =>採用Server與Client 一問一答的模式
+
+## 4.不熟悉視窗設計
+
+=>上網找尋答案、多次試玩&與隊友討論來Debug
