@@ -22,7 +22,7 @@ import com.doge.OsUtils;
 public class GameCode extends JFrame {
 	public GameCode() {
 		 setFocusableWindowState(true);
-		 this.setTitle("System.out.print(NCKU)");
+		 this.setTitle("System.out.print(\"NCKU\")");
 	}
 	private Panel p = new Panel();
 	private int width = 1000;

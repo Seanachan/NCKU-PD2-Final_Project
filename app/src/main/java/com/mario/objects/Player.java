@@ -56,7 +56,7 @@ public class Player extends GameObject {
             movingLeft = true;
             direction = "left";
             if ( !isFalling() ) state = "running";
-            scoreCount -=3;
+            scoreCount -=4;
             updateSprites();
         }
     }
@@ -70,7 +70,7 @@ public class Player extends GameObject {
             movingRight = true;
             direction = "right";
             if ( !isFalling() ) state = "running";
-            scoreCount +=3;
+            scoreCount +=2;
             updateSprites();
         }
     }
@@ -197,7 +197,7 @@ public class Player extends GameObject {
             size = "";
             style = "";
             direction = "";
-            scoreCount =0;
+            scoreCount =1;
             updateSprites();
             game.stop(scoreCount,win);
             return ;

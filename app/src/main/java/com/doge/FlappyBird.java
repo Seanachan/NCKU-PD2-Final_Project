@@ -157,8 +157,8 @@ public class FlappyBird extends JPanel implements ActionListener,KeyListener{
         }else{
             g.setFont(new Font("Arial",Font.PLAIN,20));
             g.drawString("Time: "+gameTime,this.getWidth()/10,this.getWidth()/10);
-            g.drawString("Score: "+(int) Math.round(((double) (60-gameTime)/60)*150),this.getWidth()/10,this.getWidth()/10+30);
-            score=(int) Math.round(((double) (60-gameTime)/60)*100);
+            g.drawString("Score: "+(int) Math.round(((double) (60-gameTime)/60)*350),this.getWidth()/10,this.getWidth()/10+30);
+            score=(int) Math.round(((double) (60-gameTime)/60)*350);
 
             if(bird.y>BOARD_HEIGHT/2){
                 score-=1;

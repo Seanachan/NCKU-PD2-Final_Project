@@ -220,7 +220,7 @@ public class PlayerSocket {
 											}
 											gameCode.closeBGM();
 										}
-										realScore = 180 - Panel.elapsedSeconds;								
+										realScore = 300 - Panel.elapsedSeconds;								
 										if(Panel.isFail) realScore = 1;		
 										if(realScore < 1) realScore = 1;							
 										break;
@@ -388,6 +388,11 @@ public class PlayerSocket {
 						changePage = true;
 						for(int i = 0; i <3;i++){
 							name_scores[i] = serverInput.readUTF();
+							try {
+								Thread.sleep(100);
+							} catch (Exception e) {
+								// TODO: handle exception
+							}			
 						}
 		                
 						
