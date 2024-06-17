@@ -114,16 +114,11 @@ public class FlappyBird extends JPanel implements ActionListener,KeyListener{
     }
     public void placePipes(){
         Random rand = new Random();
-        int randomPipeY = (int) (pipeY-pipeHeight/6-Math.random()*(pipeHeight/2));
-        int openSpace = 150+rand.nextInt((this.getHeight()/4));
+        int randomPipeY = (int) (pipeY-pipeHeight/4-Math.random()*(pipeHeight-pipeHeight/2.5));
         Pipe topPipe = new Pipe(topPipeImg);
-        // Pipe botPipe = new Pipe(bottomPipeImg);
 
         topPipe.y=randomPipeY;
         pipes.add(topPipe); 
-
-        // botPipe.y=openSpace+pipeHeight;
-        // pipes.add(botPipe);
     }
 
     @Override
@@ -162,8 +157,12 @@ public class FlappyBird extends JPanel implements ActionListener,KeyListener{
         }else{
             g.setFont(new Font("Arial",Font.PLAIN,20));
             g.drawString("Time: "+gameTime,this.getWidth()/10,this.getWidth()/10);
-            g.drawString("Score: "+(int) Math.round(((double) (60-gameTime)/60)*100),this.getWidth()/10,this.getWidth()/10+30);
+            g.drawString("Score: "+(int) Math.round(((double) (60-gameTime)/60)*150),this.getWidth()/10,this.getWidth()/10+30);
             score=(int) Math.round(((double) (60-gameTime)/60)*100);
+
+            if(bird.y>BOARD_HEIGHT/2){
+                score-=1;
+            }
         }
 
     }
@@ -222,6 +221,4 @@ public class FlappyBird extends JPanel implements ActionListener,KeyListener{
     public void keyReleased(KeyEvent e) {
         
     }
-    
-    
 }
