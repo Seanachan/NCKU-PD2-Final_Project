@@ -1,38 +1,108 @@
-# 股票大進擊
+# NCKU股票大進擊
 
 ## 動機
 
 身為資工系，一入學的時候充滿了抱負，想要廣泛的學習，增進自己的實力，然後應用所學在有興趣的事情上。
 
-我們設計了一個遊戲來描述資工系的一生。
+我們設計了一個遊戲來描述資工系的大學生活。
 
 初出茅廬，必須學習好程式語言，才能進行應用。
 
-中期，要學習一些程式以外的知識，才能和寫程式的專長結合。
+中期，要學習一些程式以外的知識，學習投資，與寫程式的專長結合。
 
-後期，開始更深入和程式奮鬥，又曾幾何時感到挫折，常常變成韭菜。
+後期，開始更深入和程式奮鬥，挑戰不同程式語言及應用；同時，避免常常投資失敗變成韭菜。
 
 祝我們都能在未來各自的領域上發光發熱。
 
 ## 內容
+這是一個多人遊戲系列，在Server端建立房間後，Client端可以進入遊戲房間，
+3人到齊，遊戲便會開始。
 
-以瑪利歐的遊戲作為基礎，我們除了做出外觀包裝上的更動外，也支援同時多人遊玩。
+總共有三個遊戲關卡，
+(1) JAVA貪食蛇：程式小白鍛鍊計畫
+(2) Flappy Doge：投資韭菜躲避戰
+(3) 馬力歐：資工系畢業之路
+玩家需要陸續通過這些關卡，最後便能參與成大資工的畢業典禮。
+最後會結算三個遊戲的總分，顯示玩家的排名。
+
+
 
 # 實作
 
-## CISE Snake Game
+## JAVA貪食蛇：程式小白鍛鍊計畫
 
-### 蒐集“System.out.println();” 來完成任務。
+### 概念
+蒐集“System.out.println()” 來完成遊戲。
+使用鍵盤控制上下左右，控制貪食蛇吃到所有目標字母。
+即使完成遊戲，因為少吃了一個";"，還是有可能面臨二一大魔王。
 
-## Flappy Doge
+#### 遊戲畫面
+
+#### 遊戲流程
+
+```mermaid
+graph LR
+id1(enter) --> id2[Pop Game Instructions] --Press Space--> id4[Game Start]--> id6[Collect the targets]
+
+```
+
+#### Class Diagram
+```mermaid
+classDiagram
+graph LR
+    class GameCode {
+      -int width
+      -int height
+      -Panel 
+      -Clip bgm
+      -showRules()
+      +launch()
+      +playBGM()
+      +closeBGM()
+    }
+
+    class GameImage{
+      +ImageIcon letter_used
+      +setImage(int index)
+      +drawWord(Graphics g,String str, Color color, int size, int x, int y)
+    }
+
+    class Panel{
+      -int width
+      -int height
+      -int length
+      -Timer timer
+      +String direction
+      +boolean isStart
+      +boolean isOverlap
+      +boolean isComplete
+      +boolean isFail
+      +int elapsedSeconds
+      +void initDraw()
+      +void paint(Graphics g)
+      +void actionPerformed(ActionEvent e)
+    }
+
+    Panel --|> ActionListener :implements
+    GameCode --|> JFrame :extends
+    Panel --|> JPanel :extends
+    GameImage --|> JPanel :extends
+    GameCode --> Panel : contains
+    Panel --> GameImage : uses
+
+```
+
+## Flappy Doge：投資韭菜躲避戰
 
 ### 概念
 
-用股市的k線圖當作背景，實現flapy bird的遊戲。其中，使用 Doge Coin的圖片作為上下移動的主要標的。隨著過關斬將通過一根根的韭菜，分數持續增加，而k線圖也會追蹤Doge Coin的位置而上下起伏。借助Eclipse的開發工具，加速介面的開發速度。
+用股市的k線圖當作背景，實現flapy bird的遊戲。其中，使用 Doge Coin的圖片作為上下移動的主要標的。隨著過關斬將通過一根根的韭菜(躲避韭菜)，分數持續增加，而k線圖也會追蹤Doge Coin的位置而上下起伏。借助Eclipse的開發工具，加速介面的開發速度。
 
 #### 以contentPane 為基底，增加JPanel
 
 JPanel 的部分有：infoBar, Grids, 格線右邊的數字
+
+#### 遊戲畫面
 
 #### 遊戲流程
 
@@ -97,6 +167,7 @@ graph LR
         -Random random
         -static Timer gameLoop
         -static Timer placesPipesTimer
+        -Clip bgm
         +FlappyBird()
         +startAllTimer()
         +placePipes()
@@ -161,7 +232,7 @@ graph LR
 
 ```
 
-#### Class Diagram for dynamic Background
+#### Class Diagram for Dynamic Background
 
 ```mermaid
 classDiagram
@@ -244,3 +315,69 @@ graph LR
 ### 概念
 
 為了運用所學，必須征服一個個的程式語言(敵人)，來增加分數。如果禁止不動的話會變成韭菜，死掉的話會變成韭菜水餃。
+
+## Server 以及 Client端設計
+使用Java Socket Programming來建立遊戲系統，Client端程式主要設計遊戲視窗與邏輯、向Server求取其他玩家的資訊，Server端主要在指示Client該跳往哪個遊戲狀態、記錄玩家資訊。
+Client在此專案的流程如下：
+
+```mermaid
+graph LR
+id1(Join the room) --3 players joined--> id2[1st Game] --> id3[2nd Game]--> id4[3rd Game]--Wait for other players--> id5(Ranking)
+```
+
+#### Class Diagram for server
+```mermaid
+classDiagram
+graph LR
+    class GameServer {
+      +List<Player> players
+      +int serverState
+      +int playerNum
+      +void main(String[] args)
+    }
+
+    class ClientConnection{
+      -Socket socket
+      -int playerIndex
+      +void run()
+    }
+
+    class Player{
+      -String name
+      -String[] score
+      -int totalScore
+      +void setName(String name)
+      +void setScore(int gameIndex, String newScore)
+      +String getName()
+      +String getScore(int gameIndex)
+      +String int getTotalScore()
+    }
+
+    ClientConnection --|> ActionListener :implements
+    GameServer --> Player : contains
+    GameServer --> ClientConnection : uses
+    ClientConnection --> Player : uses
+
+```
+
+# 困難與解決
+
+## 1.圖片路徑
+
+我們發現Windows和MacOS在讀取照片的時候，所需的路徑不一樣，因此增加了`OsUtil` 來判斷使用者系統，並給予正確的路徑。
+
+Windows:
+
+`app/src/res/path-to-img `
+
+MacOS:
+
+`src/res/path-to-img`
+
+## 2.原本要串Online data base 
+較熟悉的Firebase只在移動應用(Android和iOS平台)使用過，但是我們是純JAVA視窗設計
+=>直接自行使用Socket Programming，設計Server與Client程式
+
+## 3.一開始不知道怎麼讓server和client準確互相傳送訊息
+=>採用Server與Client 一問一答的模式
+

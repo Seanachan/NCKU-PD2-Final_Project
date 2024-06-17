@@ -24,11 +24,11 @@ public class GameCode extends JFrame {
 		 setFocusableWindowState(true);
 		 this.setTitle("System.out.print(NCKU)");
 	}
-	Panel p = new Panel();
+	private Panel p = new Panel();
 	private int width = 1000;
 	private int height = 801;
 	private int playBgmCount = 0;
-	Clip bgm = null;
+	private Clip bgm = null;
 	
 	public void launch() {
 		try {

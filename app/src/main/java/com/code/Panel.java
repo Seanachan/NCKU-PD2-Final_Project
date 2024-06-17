@@ -11,7 +11,7 @@ import javax.swing.JPanel;
 
 
 public class Panel extends JPanel implements ActionListener {
-	public int length = 1;
+	private int length = 1;
 	public int[] codeX = new int[800];
 	public int[] codeY = new int[800];
 	
@@ -38,7 +38,7 @@ public class Panel extends JPanel implements ActionListener {
 	Random rand = new Random();
 	Random randIncorrect = new Random();
 	
-	Timer timer = new Timer(80, this);
+	private Timer timer = new Timer(80, this);
 	
 	
 
