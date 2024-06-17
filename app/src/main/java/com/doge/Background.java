@@ -187,7 +187,7 @@ public class Background {
         numRowPanel.setBackground(new Color(0,0,0,0));
         numRowPanel.setLayout(new GridLayout(0, 1, 0, 0));
         
-        n9 = 220.0; n8 = 320.0; n7 = 420.0; n6 = 520.0; n5 = 620.0; n4 = 720.0; n3 = 820.0; n2 = 920.0; n1 = 1020.0;
+        n9 = 90.0; n8 = 145.0; n7 = 200.0; n6 = 255.0; n5 = 310.0; n4 = 365.0; n3 = 420.0; n2 = 475.0; n1 = 530.0;
         JLabel num1 = new JLabel(String.format("%.2f", n1));
         num1.setForeground(Color.WHITE);
         num1.setAlignmentY(Component.TOP_ALIGNMENT);

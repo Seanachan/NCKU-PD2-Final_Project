@@ -98,14 +98,16 @@ public class DogeGame {
 	    // Create a separate dialog to show the rules
 	    JDialog rulesDialog = new JDialog(frame, "Rules", Dialog.ModalityType.APPLICATION_MODAL);
 	    rulesDialog.setSize(525, 225);
+        rulesDialog.setFont(new Font("Arial",Font.PLAIN,20));
 	    rulesDialog.setLocationRelativeTo(frame);
 	    JTextArea rulesTextArea = new JTextArea();
 	    rulesTextArea.setText(" Game Rules :\n\n" +
 	            " 1. Goal: Dodge the chives on the path to let Doge Coin surrvive.    \n" +
 	            " 2. Elapsed Time Equals To Your Score, total of 100 points.   \n" +
 	            " 3. Press space bar to fly, but the gravity will also drag you down.   \n" +
-                " 4. The total amount of time is 60 seconds, try the best you can!   \n\n" +
-	            " 5. !! THE GAME WILL START AS SOON AS YOU CLOSE THIS TAB !!   \n" 
+                " 4. The total amount of time is 60 seconds, try the best you can!   \n" +
+                " 5. But bear in mind that if your position is below half of the screen, the point will be deducted ! \n\n"+
+	            " !! THE GAME WILL START AS SOON AS YOU CLOSE THIS TAB !!   \n" 
 	            );
 
 	    rulesTextArea.setEditable(false);

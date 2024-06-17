@@ -99,10 +99,6 @@ public class Game extends Canvas implements Runnable {
         g.dispose();
         bs.show();
     }
-    // private void showGameOverDialog() {
-    //     // Ensure the game over message is shown in a dialog box
-    //     JOptionPane.showMessageDialog(this, "Game Over!", "Game Over", JOptionPane.INFORMATION_MESSAGE);
-    // }
 
     public static Texture getTex(){
         return tex;
