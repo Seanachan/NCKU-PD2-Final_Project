@@ -2,7 +2,17 @@
 
 ## 動機
 
-今日台股的表現讓投資人充滿了信心，包括我們在內，也都一邊看著code，一邊看著股票上上下下。適逢期末，我們想結合這個共同的興趣作為idea，使用java做出一個有趣的小遊戲。
+身為資工系，一入學的時候充滿了抱負，想要廣泛的學習，增進自己的實力，然後應用所學在有興趣的事情上。
+
+我們設計了一個遊戲來描述資工系的一生。
+
+初出茅廬，必須學習好程式語言，才能進行應用。
+
+中期，要學習一些程式以外的知識，才能和寫程式的專長結合。
+
+後期，開始更深入和程式奮鬥，又曾幾何時感到挫折，常常變成韭菜。
+
+祝我們都能在未來各自的領域上發光發熱。
 
 ## 內容
 
@@ -10,21 +20,26 @@
 
 # 實作
 
-## 背景
+## CISE Snake Game
 
-Goal: 實現近似於股市k線圖的背景，隨著散戶奔跑而起伏。
-History: 歷經使用VScode手刻code之後發現過於繁雜，改使用Eclipse的windowBuidler作為開發工具。
+### 蒐集“System.out.println();” 來完成任務。
 
-### 以contentPane 為基底，增加JPanel
+## Flappy Doge
 
-JPanel 的部分有：infoBar, Grids, 格線右邊的數字[](https://)
+### 概念
 
-### 格線
+用股市的k線圖當作背景，實現flapy bird的遊戲。其中，使用 Doge Coin的圖片作為上下移動的主要標的。隨著過關斬將通過一根根的韭菜，分數持續增加，而k線圖也會追蹤Doge Coin的位置而上下起伏。借助Eclipse的開發工具，加速介面的開發速度。
+
+#### 以contentPane 為基底，增加JPanel
+
+JPanel 的部分有：infoBar, Grids, 格線右邊的數字
+
+#### 格線
 
 override`drawComponent(Graphics g)`，使格線畫在JPanel上。
 使用`g.drawLine(x1,y1,x2,y2)`，for迴圈迭代畫出格線。
 
-### K線
+#### K線
 
 由於畫面佔滿K線之後要將先前畫上去的K線刪除，因此用Deque儲存KLine的object, 只要size超過一定數量就pop front。
 
@@ -46,22 +61,9 @@ KLineGraph --timeFrame/3--> repaint
 repaint --timeFrame*2--> paintComponent
 ```
 
-## 遊戲內容
 
-退後5pixel股價跌1%
-
-往前5pixel股價漲1%
-
-如果停止超過兩秒每秒跌2%
-
-碰到壞蘑菇股價跌10%
-
-吃到好蘑菇漲5%
-
-往後>1120pixel 跌停
 
 ## Graphs
-
 
 ```mermaid
 classDiagram
@@ -128,7 +130,6 @@ class KLineGraph {
 
 ```
 
-
 方型圓邊：起/始點
 正方形: process
 菱形:decisiion
@@ -139,3 +140,9 @@ graph LR
   id1([開始]) --> id2[Start Menu]--> id3[Load Map] --> Start
   id12[End Page]
 ```
+
+## 韭菜瑪利歐
+
+### 概念
+
+為了運用所學，必須征服一個個的程式語言(敵人)，來增加分數。如果禁止不動的話會變成韭菜，死掉的話會變成韭菜水餃。
