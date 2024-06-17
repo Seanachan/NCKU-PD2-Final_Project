@@ -245,6 +245,7 @@ public class PlayerSocket {
 										e.printStackTrace();
 									}
 								}
+								dogeGame.closeBGM();
 								tempScore = "" + DogeGame.score;
 								sentToServer = true;
 								receiveFromServer = true;
@@ -269,7 +270,7 @@ public class PlayerSocket {
 							}
 							case 3:{
 								//join third game
-								Window window = new Window(1268, 708, "Super Mario Game Prototype", new Game());
+								Window marioGame = new Window(1268, 708, "Super Mario Game Prototype", new Game());
 								while (!Window.isComplete) {
 									try {
 										Thread.sleep(10);
@@ -277,14 +278,15 @@ public class PlayerSocket {
 										e.printStackTrace();
 									}
 								}
+								marioGame.closeBGM();
 								System.out.println("Third game finished");
 								tempScore = ("" + Window.score);//record score
 								sentToServer = true;
 								receiveFromServer = true;
 								changePage = false;
 								
-								window.frame.setVisible(false);
-								window.frame = null;
+								marioGame.frame.setVisible(false);
+								marioGame.frame = null;
 								break;	
 							}
 						}
