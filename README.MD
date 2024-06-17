@@ -654,10 +654,13 @@ graph LR
 
 ## 工作分配
 
-Seanachan: Flappy Doge遊戲製作
-JKaiWang: Mario遊戲製作
-Kuan Yi: Snake遊戲製作、Server & Client端設計
-PYCHS: 馬力歐遊戲製作
+#### Seanachan: Flappy Doge遊戲製作
+
+#### JKaiWang: Mario遊戲製作
+
+#### Kuan Yi: Snake遊戲製作、Server & Client端設計
+
+#### PYCHS: 馬力歐遊戲製作
 
 ## 分工方式
 
