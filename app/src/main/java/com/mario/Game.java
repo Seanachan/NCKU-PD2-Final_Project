@@ -3,16 +3,14 @@ package com.mario;
 import java.awt.*;
 import java.awt.image.BufferStrategy;
 
-import javax.swing.JOptionPane;
-
+import com.doge.OsUtils;
 import com.mario.framework.Level;
 import com.mario.framework.Texture;
 import com.mario.utils.Window;
 
 public class Game extends Canvas implements Runnable {
 
-    private boolean running = false;
-    //private boolean gameOver = false;
+    private volatile boolean running = false;
     private Thread thread;
 
     public static int WIDTH, HEIGHT;
@@ -20,31 +18,20 @@ public class Game extends Canvas implements Runnable {
     static Texture tex;
 
     public synchronized void start() {
-        if ( running ) return;
+        if ( running && thread.isInterrupted()) return;
 
         running = true;
         thread = new Thread(this);
         thread.start();
     }
-    public synchronized void stop() {
-        System.out.println("stop");
-        if (!running) {
-            //thread.sleep(3);
-            
-            return;
-        }
-        running = false;
-        //gameOver = true; 
-        System.out.println(running);
-        try {
-            thread.join();
-            
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+    public void stop(int scoreCount,boolean win) {
+        running=false;
+        Window.shouldShowScore=true;
+        // System.out.println("\n\n"+Thread.currentThread()==null);
+        // System.out.println("\n\n"+Thread.currentThread());
+        Window.closeWindow(scoreCount,win);
         
-        System.out.println("stop()");
-        
+        Thread.currentThread().stop();    
     }
 
     private void init() {
@@ -53,7 +40,12 @@ public class Game extends Canvas implements Runnable {
 
         tex = new Texture();
 
-        currentLevel = new Level( this, "app/src/res/level1.png", "black" );
+        if(OsUtils.isWindows()){
+            currentLevel = new Level( this, "app/src/res/level1.png", "black" );
+        }else{
+            currentLevel = new Level( this, "src/res/level1.png", "black" );
+        }
+        
     }
 
     public void run() {
@@ -67,7 +59,7 @@ public class Game extends Canvas implements Runnable {
         long timer = System.currentTimeMillis();
         int updates = 0;
         int frames = 0;
-        while ( running ) {
+        while ( running && !Thread.currentThread().isInterrupted()) {
             long now = System.nanoTime();
             delta += ( now - lastTime ) / ns;
             lastTime = now;
@@ -86,8 +78,6 @@ public class Game extends Canvas implements Runnable {
                 updates = 0;
             }
         }
-        render();
-        //stop(); 
     }
 
     private void tick() {
@@ -123,9 +113,7 @@ public class Game extends Canvas implements Runnable {
     public void setRunning(boolean running){
         this.running = running;
     }
-      
 
-    // Original game block size = 16, scaling it to 32; 16w by 15h
     public static void main(String[] args) {
         new Window(1268, 708, "Super Mario Game Prototype", new Game());
     }

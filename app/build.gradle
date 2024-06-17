@@ -32,8 +32,8 @@ java {
 
 application {
     // Define the main class for the application.
-    // mainClass = 'com.mario.Game'
-    mainClass = 'com.doge.DogeGame'
+    mainClass = 'com.mario.Game'
+    // mainClass = 'com.doge.DogeGame'
 }
 
 tasks.named('test') {

@@ -7,11 +7,15 @@ import com.mario.Game;
 import java.awt.*;
 
 public class Window {
-    public JFrame frame;
+    public static JFrame frame;
     public static int score = 0;
     public static boolean isComplete = false;
     public static boolean shouldShowScore=false;
+    static int width;
+    static int height;
     public Window(int width, int height, String title, Game game){
+        Window.width=width;
+        Window.height=height;
         game.setPreferredSize(new Dimension(width, height));
         game.setMinimumSize(new Dimension(width, height));
         game.setMaximumSize(new Dimension(width, height));
@@ -24,30 +28,45 @@ public class Window {
         frame.setLocationRelativeTo(null);
         frame.setVisible(true);
 
-        game.start();
-        System.out.println("here");
-        while(true){
-            if(shouldShowScore){
-                showScore();
-                System.out.println("yes");
-                break;
-            }
-        }
-        // @Override
-        //     public void windowClosing(WindowEvent e) {
-        //         game.stop();
-        //         System.exit(0);
-        //     }
-        // });
-        
-        // frame.setResizable(false);
-        // frame.setLocationRelativeTo(null);
-        // frame.add(game);
-        // frame.setVisible(true);
-        // game.start(
+        game.start();        
     }
-    public void showScore(){
-        frame.getGraphics().drawString(String.format("%d", score), frame.getWidth()/2, frame.getHeight()/2);
+    public static void closeWindow(int score,boolean win){
+        try {
+            frame.dispose();    
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        JFrame overFrame = new JFrame();
+        overFrame.setBackground(Color.black);
+        overFrame.setPreferredSize(new Dimension(width, height));
+        overFrame.setMinimumSize(new Dimension(width, height));
+        overFrame.setMaximumSize(new Dimension(width, height));
+        overFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        overFrame.setResizable(false);
+        overFrame.setLocationRelativeTo(null);
+        overFrame.setVisible(true);
 
+        JLabel gameOverLabel = new JLabel();
+        gameOverLabel.setBackground(Color.BLACK);
+        gameOverLabel.setHorizontalAlignment(JLabel.CENTER);
+        gameOverLabel.setVerticalAlignment(JLabel.CENTER);
+        gameOverLabel.setFont(new Font("Arial", Font.PLAIN, 50));
+        gameOverLabel.setForeground(Color.WHITE);
+        gameOverLabel.setBackground(Color.DARK_GRAY);
+        gameOverLabel.setOpaque(true);
+
+        // Use HTML to center the text
+        String text;
+        if (win) {
+            text = "<html><div style='text-align: center;'>You Win!<br/>Score: " + score + "</div></html>";
+        } else {
+            text = "<html><div style='text-align: center;'>Game Over!<br/>Score: " + score + "</div></html>";
+        }
+        gameOverLabel.setText(text);
+
+        overFrame.add(gameOverLabel);
+        overFrame.setVisible(true);
+
+        isComplete=true;
     }
 }

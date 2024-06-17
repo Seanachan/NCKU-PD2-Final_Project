@@ -10,6 +10,7 @@ import java.util.Map;
 
 import javax.imageio.ImageIO;
 
+import com.doge.OsUtils;
 import com.mario.utils.BufferedImageLoader;
 import com.mario.utils.SpriteSheet;
 
@@ -21,31 +22,48 @@ public class Texture {
 
     public Texture(){
         texMap = new HashMap<>();
-        BufferedImageLoader loader = new BufferedImageLoader();
-        
         BufferedImage image = null;
-        
-        // File file = new File("/res/blocks.png");
-        // System.out.println(file.getName());
-        try {
-            image = ImageIO.read(new FileInputStream("app/src/res/level-items.png"));
-            level_items_sprites = new SpriteSheet(image);
-
-            image = ImageIO.read(new FileInputStream("app/src/res/blocks.png"));
-            block_sprites = new SpriteSheet(image);
-
-            image = ImageIO.read(new FileInputStream("app/src/res/objects.png"));
-            object_sprites = new SpriteSheet(image);
-
-            image = ImageIO.read(new FileInputStream("app/src/res/image.png"));
-            player_sprites = new SpriteSheet(image);
-
-            image = ImageIO.read(new FileInputStream("app/src/res/newEnemy.png"));
-            enemy_sprites = new SpriteSheet(image);
-            
-        } catch (Exception e){
-            e.printStackTrace();
+        if(OsUtils.isWindows()){
+            try {
+                image = ImageIO.read(new FileInputStream("app/src/res/level-items.png"));
+                level_items_sprites = new SpriteSheet(image);
+    
+                image = ImageIO.read(new FileInputStream("app/src/res/blocks.png"));
+                block_sprites = new SpriteSheet(image);
+    
+                image = ImageIO.read(new FileInputStream("app/src/res/objects.png"));
+                object_sprites = new SpriteSheet(image);
+    
+                image = ImageIO.read(new FileInputStream("app/src/res/image.png"));
+                player_sprites = new SpriteSheet(image);
+    
+                image = ImageIO.read(new FileInputStream("app/src/res/newEnemy.png"));
+                enemy_sprites = new SpriteSheet(image);
+                
+            } catch (Exception e){
+                e.printStackTrace();
+            }
+        }else{
+            try {
+                image = ImageIO.read(new FileInputStream("src/res/level-items.png"));
+                level_items_sprites = new SpriteSheet(image);
+    
+                image = ImageIO.read(new FileInputStream("src/res/blocks.png"));
+                block_sprites = new SpriteSheet(image);
+    
+                image = ImageIO.read(new FileInputStream("src/res/objects.png"));
+                object_sprites = new SpriteSheet(image);
+    
+                image = ImageIO.read(new FileInputStream("src/res/image.png"));
+                player_sprites = new SpriteSheet(image);
+    
+                image = ImageIO.read(new FileInputStream("src/res/newEnemy.png"));
+                enemy_sprites = new SpriteSheet(image);                
+            } catch (Exception e){
+                e.printStackTrace();
+            }
         }
+        
 
         getLevelItemTex();
         getBlockTex();
@@ -321,49 +339,52 @@ public class Texture {
         smallMarioFiringLeft.add( player_sprites.grabImage( colStart + 3, rowStart + 1, size, size ) );
         texMap.put( "mario-small-firing-left-" + id, smallMarioFiringLeft );
 
-        // List<BufferedImage> largeMarioIdleRight = new ArrayList<>();
-        // largeMarioIdleRight.add( player_sprites.grabImage( colStart, rowStart + 3, size, size * 2 ) );
-        // texMap.put( "mario-large-idle-right-" + id, largeMarioIdleRight );
 
-        // List<BufferedImage> largeMarioRunningRight = new ArrayList<>();
-        // largeMarioRunningRight.add( player_sprites.grabImage( colStart + 1, rowStart + 3, size, size * 2 ) );
-        // largeMarioRunningRight.add( player_sprites.grabImage( colStart + 2, rowStart + 3, size, size * 2 ) );
-        // largeMarioRunningRight.add( player_sprites.grabImage( colStart + 3, rowStart + 3, size, size * 2 ) );
-        // texMap.put( "mario-large-running-right-" + id, largeMarioRunningRight );
+        ////
+        List<BufferedImage> largeMarioIdleRight = new ArrayList<>();
+        largeMarioIdleRight.add( player_sprites.grabImage( colStart, rowStart + 3, size, size * 2 ) );
+        texMap.put( "mario-large-idle-right-" + id, largeMarioIdleRight );
 
-        // List<BufferedImage> largeMarioJumpingRight = new ArrayList<>();
-        // largeMarioJumpingRight.add( player_sprites.grabImage( colStart + 4, rowStart + 3, size, size * 2 ) );
-        // texMap.put( "mario-large-jumping-right-" + id, largeMarioJumpingRight );
+        List<BufferedImage> largeMarioRunningRight = new ArrayList<>();
+        largeMarioRunningRight.add( player_sprites.grabImage( colStart + 1, rowStart + 3, size, size * 2 ) );
+        largeMarioRunningRight.add( player_sprites.grabImage( colStart + 2, rowStart + 3, size, size * 2 ) );
+        largeMarioRunningRight.add( player_sprites.grabImage( colStart + 3, rowStart + 3, size, size * 2 ) );
+        texMap.put( "mario-large-running-right-" + id, largeMarioRunningRight );
 
-        // List<BufferedImage> largeMarioHangingRight = new ArrayList<>();
-        // largeMarioHangingRight.add( player_sprites.grabImage( colStart + 5, rowStart + 3, size, size * 2 ) );
-        // texMap.put( "mario-large-hanging-right-" + id, largeMarioHangingRight );
+        List<BufferedImage> largeMarioJumpingRight = new ArrayList<>();
+        largeMarioJumpingRight.add( player_sprites.grabImage( colStart + 4, rowStart + 3, size, size * 2 ) );
+        texMap.put( "mario-large-jumping-right-" + id, largeMarioJumpingRight );
 
-        // List<BufferedImage> largeMarioFiringRight = new ArrayList<>();
-        // largeMarioFiringRight.add( player_sprites.grabImage( colStart + 6, rowStart + 3, size, size * 2 ) );
-        // texMap.put( "mario-large-firing-right-" + id, largeMarioFiringRight );
+        List<BufferedImage> largeMarioHangingRight = new ArrayList<>();
+        largeMarioHangingRight.add( player_sprites.grabImage( colStart + 5, rowStart + 3, size, size * 2 ) );
+        texMap.put( "mario-large-hanging-right-" + id, largeMarioHangingRight );
 
-        // List<BufferedImage> largeMarioIdleLeft = new ArrayList<>();
-        // largeMarioIdleLeft.add( player_sprites.grabImage( colStart, rowStart + 4, size, size * 2 ) );
-        // texMap.put( "mario-large-idle-left-" + id, largeMarioIdleLeft );
+        List<BufferedImage> largeMarioFiringRight = new ArrayList<>();
+        largeMarioFiringRight.add( player_sprites.grabImage( colStart + 6, rowStart + 3, size, size * 2 ) );
+        texMap.put( "mario-large-firing-right-" + id, largeMarioFiringRight );
 
-        // List<BufferedImage> largeMarioRunningLeft = new ArrayList<>();
-        // largeMarioRunningLeft.add( player_sprites.grabImage( colStart + 2, rowStart + 4, size, size * 2 ) );
-        // largeMarioRunningLeft.add( player_sprites.grabImage( colStart + 3, rowStart + 4, size, size * 2 ) );
-        // largeMarioRunningLeft.add( player_sprites.grabImage( colStart + 4, rowStart + 4, size, size * 2 ) );
-        // texMap.put( "mario-large-running-left-" + id, largeMarioRunningLeft );
+        List<BufferedImage> largeMarioIdleLeft = new ArrayList<>();
+        largeMarioIdleLeft.add( player_sprites.grabImage( colStart, rowStart + 5, size, size * 2 ) );
+        texMap.put( "mario-large-idle-left-" + id, largeMarioIdleLeft );
 
-        // List<BufferedImage> largeMarioJumpingLeft = new ArrayList<>();
-        // largeMarioJumpingLeft.add( player_sprites.grabImage( colStart + 1, rowStart + 4, size, size * 2 ) );
-        // texMap.put( "mario-large-jumping-left-" + id, largeMarioJumpingLeft );
+        List<BufferedImage> largeMarioRunningLeft = new ArrayList<>();
+        largeMarioRunningLeft.add( player_sprites.grabImage( colStart + 2, rowStart + 5, size, size * 2 ) );
+        largeMarioRunningLeft.add( player_sprites.grabImage( colStart + 3, rowStart + 5, size, size * 2 ) );
+        largeMarioRunningLeft.add( player_sprites.grabImage( colStart + 4, rowStart + 5, size, size * 2 ) );
+        texMap.put( "mario-large-running-left-" + id, largeMarioRunningLeft );
 
-        // List<BufferedImage> largeMarioHangingLeft = new ArrayList<>();
-        // largeMarioHangingLeft.add( player_sprites.grabImage( colStart + 5, rowStart + 4, size, size * 2 ) );
-        // texMap.put( "mario-large-hanging-left-" + id, largeMarioHangingLeft );
+        List<BufferedImage> largeMarioJumpingLeft = new ArrayList<>();
+        largeMarioJumpingLeft.add( player_sprites.grabImage( colStart + 1, rowStart + 5, size, size * 2 ) );
+        texMap.put( "mario-large-jumping-left-" + id, largeMarioJumpingLeft );
 
-        // List<BufferedImage> largeMarioFiringLeft = new ArrayList<>();
-        // largeMarioFiringLeft.add( player_sprites.grabImage( colStart + 6, rowStart + 4, size, size * 2 ) );
-        // texMap.put( "mario-large-firing-left-" + id, largeMarioFiringLeft );
+        List<BufferedImage> largeMarioHangingLeft = new ArrayList<>();
+        largeMarioHangingLeft.add( player_sprites.grabImage( colStart + 5, rowStart + 5, size, size * 2 ) );
+        texMap.put( "mario-large-hanging-left-" + id, largeMarioHangingLeft );
+        List<BufferedImage> largeMarioFiringLeft = new ArrayList<>();
+        largeMarioFiringLeft.add( player_sprites.grabImage( colStart + 6, rowStart + 5, size, size * 2 ) );
+        texMap.put( "mario-large-firing-left-" + id, largeMarioFiringLeft );
+        ////
+
 
         List<BufferedImage> bigTransformationRight = new ArrayList<>();
         bigTransformationRight.add( player_sprites.grabImage( colStart, rowStart, size, size ) );

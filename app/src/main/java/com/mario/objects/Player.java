@@ -22,11 +22,10 @@ public class Player extends GameObject {
     private String style = "normal";
     private String direction = "right";
     public int liveCount =0;
+    boolean win=false;
     private static int scoreCount =0;
 
-//    public Player( float x, float y, String color ) {
-//        super( x, y, 32, 32, "player", color );
-//    }
+
     public static int getScoreCount(){
         return scoreCount;
     }
@@ -40,9 +39,6 @@ public class Player extends GameObject {
 
     public void tick() {
         super.tick();
-        // Right now, player does not fall automatically if what object beneath it moves, but it doesn't
-        // This can be tweaked, but I doubt this use case will happen naturally in the game
-
         if ( x < 0 ) {
             x = 0;
             stopMoveLeft();
@@ -143,12 +139,16 @@ public class Player extends GameObject {
         super.handleCollision( contactPoint, neighbor );
         //System.out.println(neighbor.getType());
         if ( neighbor.getType() == "mushroom" ) {
+            scoreCount +=10;
+            liveCount-=1;
+            size="large";
             removeItem(neighbor);
             return;
         } else if ( neighbor.getType() == "block" ) {
             if ( contactPoint == 1 ) neighbor.handleCollision( 3, this );
         } else if ( neighbor.getType() == "enemy" ) {
             if ( contactPoint == 3 ) {
+                scoreCount +=5;
                 jump(5);
                 removeItem(neighbor);
             } else {
@@ -158,11 +158,10 @@ public class Player extends GameObject {
         
         if (x <  6549 && x > 6424 &&
             y  <= 385 && y>=256) {
-            System.out.println("end");
-            
-            game.stop();
+            check = true;            
+            game.stop(scoreCount,true);
             Window.isComplete = true;
-            //System.out.println(scoreCount);
+            return;
         }
         if ( contactPoint == 2 ) {
             stopMoveRight();
@@ -200,7 +199,7 @@ public class Player extends GameObject {
             direction = "";
             scoreCount =0;
             updateSprites();
-            game.stop()  ;
+            game.stop(scoreCount,win);
             return ;
         }
     }
@@ -214,17 +213,7 @@ public class Player extends GameObject {
     }
     public void render(Graphics g) {
         super.render(g);
-        gdrawWin(g);
         drawLivesCount(g);
-        
-    }
-    public void gdrawWin(Graphics g){
-        //System.out.println("gdrawWin: "+check);
-        if(check == true){
-            g.setColor(Color.WHITE); // Set the text color
-            g.setFont(new Font("Arial", Font.BOLD, 20)); // Set the font
-            g.drawString("Win", 450, 650);
-        }
     }
 
     private void drawLivesCount(Graphics g) {
@@ -235,9 +224,8 @@ public class Player extends GameObject {
         if(liveCount >=3){
             g.setFont(new Font("Arial",Font.BOLD,70));
             g.drawString("Game Over", 450,650);
-            // render(g);
-            // thread.interrupt();
-            game.stop();
+            g.drawString("Score: "+String.format("%d", scoreCount),(int) getWidth()/2,(int) getHeight()/2+30);
+            game.stop(scoreCount,win);
         }
         
     }
@@ -245,5 +233,11 @@ public class Player extends GameObject {
 }
 
 
-
-
+/*
+move right score+=3
+move left score -=3
+beat enemy +=5;
+eat the mushroom socre +=10
+dead one time score -= 10;
+dead trhee time score =0;
+*/

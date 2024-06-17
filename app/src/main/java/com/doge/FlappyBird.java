@@ -160,9 +160,9 @@ public class FlappyBird extends JPanel implements ActionListener,KeyListener{
             DogeGame.isComplete=true;
             
         }else{
-            // g.drawString("Score: "+score.toString(),this.getWidth()/10,this.getWidth()/10);
-            g.drawString("Time: "+gameTime,this.getWidth()/10,this.getHeight()/10);
-            g.drawString("Score: "+(int) Math.round(((double) (60-gameTime)/60)*100),this.getWidth()-this.getWidth()/10,this.getWidth()/10);
+            g.setFont(new Font("Arial",Font.PLAIN,20));
+            g.drawString("Time: "+gameTime,this.getWidth()/10,this.getWidth()/10);
+            g.drawString("Score: "+(int) Math.round(((double) (60-gameTime)/60)*100),this.getWidth()/10,this.getWidth()/10+30);
             score=(int) Math.round(((double) (60-gameTime)/60)*100);
         }
 
