@@ -33,7 +33,7 @@ java {
 application {
     // Define the main class for the application.
     // mainClass = 'com.mario.Game'
-    mainClass = 'com.mario.Game'
+    mainClass = 'com.ncku_game.PlayerSocket'
 }
 
 tasks.named('test') {
