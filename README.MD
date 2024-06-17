@@ -296,6 +296,500 @@ class KLineGraph {
  
 }
   
+// Mushroom.java
+classDiagram
+    class Mushroom {
+        -Texture tex
+        -float originalY
+        -String type
+        -boolean appeared
+        +Mushroom(float x, float y, String type)
+        +tick()
+        +render(Graphics g)
+        +handleCollision(int contactPoint, GameObject neighbor)
+    }
+
+    class GameObject {
+        <<abstract>>
+        +float x
+        +float y
+        +int width
+        +int height
+        +String id
+        +String color
+        +defaultSpeed
+        +setVelocityY(float v)
+        +setVelocityX(float v)
+        +tick()
+        +render(Graphics g)
+        +handleCollision(int contactPoint, GameObject neighbor)
+    }
+
+    class Texture {
+        +get(String name) Texture
+    }
+
+    class Game {
+        +getTex() Texture
+        +HEIGHT
+    }
+
+    class Level {
+        +removeItem(GameObject item)
+    }
+
+    class Player {
+        +handleCollision(int contactPoint, GameObject neighbor)
+        +moveRight()
+        +moveLeft()
+    }
+
+    Mushroom --> GameObject
+    Mushroom --> Texture
+    Mushroom --> Game
+    Mushroom --> Level
+    Mushroom --> Player
+
+// Enemy.java
+classDiagram
+    class Mushroom {
+        -Texture tex
+        -float originalY
+        -String type
+        -boolean appeared
+        +Mushroom(float x, float y, String type)
+        +tick()
+        +render(Graphics g)
+        +handleCollision(int contactPoint, GameObject neighbor)
+    }
+
+    class GameObject {
+        <<abstract>>
+        +float x
+        +float y
+        +int width
+        +int height
+        +String id
+        +String color
+        +defaultSpeed
+        +setVelocityY(float v)
+        +setVelocityX(float v)
+        +tick()
+        +render(Graphics g)
+        +handleCollision(int contactPoint, GameObject neighbor)
+    }
+
+    class Texture {
+        +get(String name) Texture
+    }
+
+    class Game {
+        +getTex() Texture
+        +HEIGHT
+    }
+
+    class Level {
+        +removeItem(GameObject item)
+    }
+
+    class Player {
+        +handleCollision(int contactPoint, GameObject neighbor)
+        +moveRight()
+        +moveLeft()
+    }
+
+    Mushroom --> GameObject
+    Mushroom --> Texture
+    Mushroom --> Game
+    Mushroom --> Level
+    Mushroom --> Player
+
+// Player.java
+
+classDiagram
+    class Player {
+        -Texture tex
+        -boolean movingLeft
+        -boolean movingRight
+        -boolean isDead
+        -String size
+        -String state
+        -String style
+        -String direction
+        -int liveCount
+        -boolean win
+        -static int scoreCount
+        -final int CASTLE_X
+        -final int CASTLE_Y
+        -Game game
+        -boolean check
+        +Player(float x, float y)
+        +static int getScoreCount()
+        +static void setScoreCount(int setScore)
+        +tick()
+        +canDestroyBrick() boolean
+        +moveLeft()
+        +moveRight()
+        +jump()
+        +jump(float speed)
+        +stopMoveLeft()
+        +stopMoveRight()
+        +updateSprites()
+        +handleCollision(int contactPoint, GameObject neighbor)
+        +die()
+        +resetPlayer()
+        +render(Graphics g)
+        +drawLivesCount(Graphics g)
+    }
+
+    class GameObject {
+        <<abstract>>
+        +float x
+        +float y
+        +int width
+        +int height
+        +String id
+        +BufferedImage[] imgs
+        +defaultSpeed
+        +setVelocityY(float v)
+        +setVelocityX(float v)
+        +tick()
+        +handleCollision(int contactPoint, GameObject neighbor)
+        +moveLeft()
+        +moveRight()
+        +isFalling() boolean
+        +render(Graphics g)
+    }
+
+    class Texture {
+        +get(String name) Texture
+    }
+
+    class Game {
+        +getTex() Texture
+        +HEIGHT
+        +stop(int score, boolean win)
+    }
+
+    class Level {
+        +removeItem(GameObject item)
+    }
+
+    class Window {
+        +static boolean isComplete
+    }
+
+    class BufferedImage
+
+    Player --> GameObject
+    Player --> Texture
+    Player --> Game
+    Player --> Level
+    Player --> Window
+    Player --> BufferedImage
+
+// PipeHead.java
+
+classDiagram
+    class PipeHead {
+        +PipeHead(float x, float y, boolean isVertical)
+        +Rectangle getBounds()
+    }
+
+    class GameObject {
+        <<abstract>>
+        +float x
+        +float y
+        +int width
+        +int height
+        +String id
+        +BufferedImage[] imgs
+        +defaultSpeed
+        +setVelocityY(float v)
+        +setVelocityX(float v)
+        +tick()
+        +handleCollision(int contactPoint, GameObject neighbor)
+        +moveLeft()
+        +moveRight()
+        +isFalling() boolean
+        +render(Graphics g)
+    }
+
+    class Texture {
+        +get(String name) Texture
+    }
+
+    class Game {
+        +getTex() Texture
+    }
+
+    class Rectangle
+
+    PipeHead --> GameObject
+    PipeHead --> Rectangle
+    PipeHead --> Game
+    PipeHead --> Texture
+
+// BrickBlock.java
+
+classDiagram
+    class BrickBlock {
+        -Texture tex
+        -float originalY
+        -int numberOfCoins
+        -String style
+        +BrickBlock(float x, float y, String style)
+        +BrickBlock(float x, float y, String style, int numberOfCoins)
+        +tick()
+        +handleCollision(int contactPoint, GameObject neighbor)
+        +destroyBlock()
+    }
+
+    class GameObject {
+        <<abstract>>
+        +float x
+        +float y
+        +int width
+        +int height
+        +String id
+        +BufferedImage[] imgs
+        +defaultSpeed
+        +setVelocityY(float v)
+        +setVelocityX(float v)
+        +tick()
+        +handleCollision(int contactPoint, GameObject neighbor)
+        +moveLeft()
+        +moveRight()
+        +isFalling() boolean
+        +render(Graphics g)
+    }
+
+    class Texture {
+        +get(String name) Texture
+    }
+
+    class Game {
+        +getTex() Texture
+    }
+
+    class Level {
+        +addItem(GameObject item)
+        +removeItem(GameObject item)
+    }
+
+    class Coin {
+        +Coin(float x, float y)
+    }
+
+    class BrickPiece {
+        +BrickPiece(float x, float y, int vx, int vy, String style)
+    }
+
+    class Player {
+        +canDestroyBrick() boolean
+    }
+
+    BrickBlock --> GameObject
+    BrickBlock --> Texture
+    BrickBlock --> Game
+    BrickBlock --> Level
+    BrickBlock --> Coin
+    BrickBlock --> BrickPiece
+    BrickBlock --> Player
+
+// BrickPiece.java
+
+classDiagram
+    class BrickPiece {
+        -Texture tex
+        -float velocityX
+        -float velocityY
+        -final float gravity
+        +BrickPiece(float x, float y, float velocityX, float velocityY, String style)
+        +tick()
+        +handleCollision(int contactPoint, GameObject neighbor)
+    }
+
+    class CanvasItem {
+        <<abstract>>
+        +float x
+        +float y
+        +int width
+        +int height
+        +String color
+        +setSprites(Texture tex)
+        +setAnimationSpeed(int speed)
+        +tick()
+        +handleCollision(int contactPoint, GameObject neighbor)
+    }
+
+    class Texture {
+        +get(String name) Texture
+    }
+
+    class Game {
+        +getTex() Texture
+        +HEIGHT
+    }
+
+    class Level {
+        +removeItem(GameObject item)
+    }
+
+    BrickPiece --> CanvasItem
+    BrickPiece --> Texture
+    BrickPiece --> Game
+    BrickPiece --> Level
+
+// Game.java
+
+classDiagram
+    class Game {
+        -volatile boolean running
+        -Thread thread
+        +int WIDTH
+        +int HEIGHT
+        -Level currentLevel
+        -static Texture tex
+        +synchronized void start()
+        +void stop(int scoreCount, boolean win)
+        +void run()
+        +void init()
+        +void tick()
+        +void render()
+        +static Texture getTex()
+        +boolean getRunning()
+        +void setRunning(boolean running)
+        +static void main(String[] args)
+    }
+
+    class Canvas {
+        +int getWidth()
+        +int getHeight()
+        +BufferStrategy getBufferStrategy()
+        +void createBufferStrategy(int numBuffers)
+        +void requestFocus()
+    }
+
+    class Runnable
+
+    class Thread {
+        +void start()
+        +void stop()
+        +boolean isInterrupted()
+    }
+
+    class Level {
+        +Level(Game game, String path, String color)
+        +void tick()
+        +void render(Graphics g)
+    }
+
+    class Texture {
+        +Texture()
+    }
+
+    class OsUtils {
+        +static boolean isWindows()
+    }
+
+    class Window {
+        +Window(int width, int height, String title, Game game)
+        +static void closeWindow(int scoreCount, boolean win)
+        +void closeBGM()
+        +static boolean isComplete
+        +static boolean shouldShowScore
+    }
+
+    class BufferStrategy {
+        +Graphics getDrawGraphics()
+        +void show()
+    }
+
+    class Graphics {
+        +void dispose()
+    }
+
+    Game --> Canvas
+    Game --> Runnable
+    Game --> Thread
+    Game --> Level
+    Game --> Texture
+    Game --> OsUtils
+    Game --> Window
+    Game --> BufferStrategy
+    Game --> Graphics
+
+// Game.java分支圖
+
+graph TD
+    A[Game.java] --> B[Canvas]
+    A --> C[Runnable]
+    A --> D[Thread]
+    A --> E[Level]
+    A --> F[Texture]
+    A --> G[OsUtils]
+    A --> H[Window]
+    A --> I[BufferStrategy]
+    A --> J[Graphics]
+
+    subgraph "Game.java Components"
+        A --> B1[volatile boolean running]
+        A --> B2[Thread thread]
+        A --> B3[int WIDTH]
+        A --> B4[int HEIGHT]
+        A --> B5[Level currentLevel]
+        A --> B6[static Texture tex]
+        A --> B7[synchronized void start()]
+        A --> B8[void stop(int scoreCount, boolean win)]
+        A --> B9[void run()]
+        A --> B10[void init()]
+        A --> B11[void tick()]
+        A --> B12[void render()]
+        A --> B13[static Texture getTex()]
+        A --> B14[boolean getRunning()]
+        A --> B15[void setRunning(boolean running)]
+        A --> B16[static void main(String[] args)]
+    end
+
+    subgraph "Canvas Components"
+        B --> C1[int getWidth()]
+        B --> C2[int getHeight()]
+        B --> C3[BufferStrategy getBufferStrategy()]
+        B --> C4[void createBufferStrategy(int numBuffers)]
+        B --> C5[void requestFocus()]
+    end
+
+    subgraph "Thread Components"
+        D --> D1[void start()]
+        D --> D2[void stop()]
+        D --> D3[boolean isInterrupted()]
+    end
+
+    subgraph "Level Components"
+        E --> E1[Level(Game game, String path, String color)]
+        E --> E2[void tick()]
+        E --> E3[void render(Graphics g)]
+    end
+
+    subgraph "Window Components"
+        H --> H1[Window(int width, int height, String title, Game game)]
+        H --> H2[static void closeWindow(int scoreCount, boolean win)]
+        H --> H3[void closeBGM()]
+        H --> H4[static boolean isComplete]
+        H --> H5[static boolean shouldShowScore]
+    end
+
+    subgraph "BufferStrategy Components"
+        I --> I1[Graphics getDrawGraphics()]
+        I --> I2[void show()]
+    end
+
+    subgraph "Graphics Components"
+        J --> J1[void dispose()]
+    end
+
+
 
 ```
 
