@@ -1,12 +1,20 @@
 package com.mario.utils;
 
+import javax.sound.sampled.AudioInputStream;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
+import javax.sound.sampled.LineUnavailableException;
+import javax.sound.sampled.UnsupportedAudioFileException;
 import javax.swing.*;
 
+import com.doge.OsUtils;
 import com.mario.Game;
 
 import java.awt.*;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.io.File;
+import java.io.IOException;
 
 public class Window {
     public static JFrame frame;
@@ -15,6 +23,8 @@ public class Window {
     public static boolean shouldShowScore=false;
     static int width;
     static int height;
+    Clip bgm = null;
+
     public Window(int width, int height, String title, Game game){
         Window.width=width;
         Window.height=height;
@@ -28,9 +38,22 @@ public class Window {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setResizable(false);
         frame.setLocationRelativeTo(null);
-        frame.setVisible(true);
+        frame.setVisible(true);       
+        
+        try {
+            if(OsUtils.isWindows()){
+				loadBGM("app/src/res/sound/mario.wav");
+            }
+            else{
+				loadBGM("src/res/sound/mario.wav");
+            }
+            
+        }catch (Exception e) {
+            e.printStackTrace();
+        }
+		playBGM();
 
-        game.start();        
+        game.start(); 
     }
     public static void closeWindow(int score,boolean win){
         try {
@@ -84,4 +107,33 @@ public class Window {
         overFrame.add(gameOverLabel);
         overFrame.setVisible(true);
     }
+
+    private void loadBGM(String soundPath) {
+		try {
+			bgm = AudioSystem.getClip();
+			AudioInputStream ais = AudioSystem.getAudioInputStream(new File(soundPath));
+			bgm.open(ais);
+		} catch (LineUnavailableException | UnsupportedAudioFileException | IOException e) {
+	        e.printStackTrace();
+	    }
+	}
+
+    private void playBGM() {
+		if (bgm != null) {
+            bgm.loop(Clip.LOOP_CONTINUOUSLY);
+        }
+	}
+	
+	private void stopBGM() {
+		if (bgm != null) {
+            bgm.stop();
+        }
+	}
+
+	public void closeBGM() {
+		if (bgm != null) {
+            bgm.close();
+            bgm = null;
+        }
+	}
 }

@@ -1,6 +1,13 @@
 package com.doge;
 import java.awt.*;
+import java.io.File;
+import java.io.IOException;
 
+import javax.sound.sampled.AudioInputStream;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
+import javax.sound.sampled.LineUnavailableException;
+import javax.sound.sampled.UnsupportedAudioFileException;
 import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JTextArea;
@@ -9,8 +16,22 @@ public class DogeGame {
     public static JFrame frame;
     public static boolean isComplete = false;
     public static int score = 0;
+    Clip bgm = null; //bgm
 
     public void launch() {
+        try {
+            if(OsUtils.isWindows()){
+				loadBGM("app/src/res/sound/dogeGame.wav");
+            }
+            else{
+				loadBGM("src/res/sound/dogeGame.wav");
+            }
+            
+        }catch (Exception e) {
+            e.printStackTrace();
+        }
+		playBGM();
+
         int BOARD_WIDTH = 1268, BOARD_HEIGHT = 708;
 
         frame = new JFrame("Doge Game");
@@ -27,6 +48,34 @@ public class DogeGame {
         frame.pack();
         frame.setVisible(true);
     }
+    private void loadBGM(String soundPath) {
+		try {
+			bgm = AudioSystem.getClip();
+			AudioInputStream ais = AudioSystem.getAudioInputStream(new File(soundPath));
+			bgm.open(ais);
+		} catch (LineUnavailableException | UnsupportedAudioFileException | IOException e) {
+	        e.printStackTrace();
+	    }
+	}
+
+    private void playBGM() {
+		if (bgm != null) {
+            bgm.loop(Clip.LOOP_CONTINUOUSLY);
+        }
+	}
+	
+	private void stopBGM() {
+		if (bgm != null) {
+            bgm.stop();
+        }
+	}
+
+	public void closeBGM() {
+		if (bgm != null) {
+            bgm.close();
+            bgm = null;
+        }
+	}
 
     public static void main(String[] args) {
         
@@ -40,6 +89,7 @@ public class DogeGame {
                 e.printStackTrace();
             }
         }
+        dogeGame.closeBGM();
 
         System.out.println("Game Over. Final Score: " + DogeGame.score);
         frame.dispose();

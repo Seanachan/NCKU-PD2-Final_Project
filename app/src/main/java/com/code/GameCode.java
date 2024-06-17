@@ -17,6 +17,8 @@ import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JTextArea;
 
+import com.doge.OsUtils;
+
 public class GameCode extends JFrame {
 	public GameCode() {
 		 setFocusableWindowState(true);
@@ -29,7 +31,17 @@ public class GameCode extends JFrame {
 	Clip bgm = null;
 	
 	public void launch() {
-		loadBGM("app/src/res/sound/piano.wav");
+		try {
+            if(OsUtils.isWindows()){
+				loadBGM("app/src/res/sound/piano.wav");
+            }
+            else{
+				loadBGM("src/res/sound/piano.wav");
+            }
+            
+        }catch (Exception e) {
+            e.printStackTrace();
+        }
 		playBGM();
 		setFocusableWindowState(true);
 		

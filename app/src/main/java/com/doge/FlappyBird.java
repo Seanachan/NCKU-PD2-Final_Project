@@ -153,7 +153,7 @@ public class FlappyBird extends JPanel implements ActionListener,KeyListener{
             
             try {
                 repaint();    
-                Thread.sleep(3000);
+                Thread.sleep(1000);
             } catch (Exception e) {
                 e.printStackTrace();
             }
