@@ -145,6 +145,7 @@ public class Texture {
     }
 
     private void getBlockTex() {
+        
 
         List<BufferedImage> groundNormal = new ArrayList<>();
         groundNormal.add( block_sprites.grabImage( 1, 1, size, size ) );
