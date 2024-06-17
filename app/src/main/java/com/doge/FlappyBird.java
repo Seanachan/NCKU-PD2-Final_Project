@@ -10,9 +10,7 @@ import java.util.Random;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
-import javax.swing.ImageIcon;
 
-// import org.jcp.xml.dsig.internal.dom.DOMDigestMethod;
 
 public class FlappyBird extends JPanel implements ActionListener,KeyListener{
     int BOARD_WIDTH=1268,BOARD_HEIGHT=708;
@@ -20,7 +18,7 @@ public class FlappyBird extends JPanel implements ActionListener,KeyListener{
     Image backgroundImg,birdImg,topPipeImg,bottomImg,bottomPipeImg;
     //Bird
     int birdX = BOARD_WIDTH/4,birdY = 0;
-    int birdWidth = 38,birdHeight=38;
+    final int birdWidth = 38,birdHeight=38;
 
     boolean gameOver = false;
     int gameTime = 60;
@@ -70,15 +68,20 @@ public class FlappyBird extends JPanel implements ActionListener,KeyListener{
         addKeyListener(this);
 
         //load images
-        // backgroundImg = new ImageIcon(getClass().getResource("src/res/flappybirdbg.png")).getImage();
-        // birdImg = new ImageIcon(getClass().getResource("d_coin.png")).getImage();
-        // topPipeImg = new ImageIcon(getClass().getResource("./chives_reversed.png")).getImage();
-        // bottomPipeImg = new ImageIcon(getClass().getResource("./chives.png")).getImage();
         try {
-            backgroundImg = ImageIO.read(new FileInputStream("app/src/res/flappybirdbg.png"));
-            birdImg = ImageIO.read(new FileInputStream("app/src/res/d_coin.png"));
-            bottomImg = ImageIO.read(new FileInputStream("app/src/res/chives.png"));
-            topPipeImg = ImageIO.read(new FileInputStream("app/src/res/chives_reversed.png"));
+            if(OsUtils.isWindows()){
+                backgroundImg = ImageIO.read(new FileInputStream("app/src/res/flappybirdbg.png"));
+                birdImg = ImageIO.read(new FileInputStream("app/src/res/d_coin.png"));
+                bottomImg = ImageIO.read(new FileInputStream("app/src/res/chives.png"));
+                topPipeImg = ImageIO.read(new FileInputStream("app/src/res/chives_reversed.png"));
+            }
+            else{
+                backgroundImg = ImageIO.read(new FileInputStream("src/res/flappybirdbg.png"));
+                birdImg = ImageIO.read(new FileInputStream("src/res/d_coin.png"));
+                bottomImg = ImageIO.read(new FileInputStream("src/res/chives.png"));
+                topPipeImg = ImageIO.read(new FileInputStream("src/res/chives_reversed.png"));
+            }
+            
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         } catch (IOException e) {
@@ -103,9 +106,6 @@ public class FlappyBird extends JPanel implements ActionListener,KeyListener{
         gameLoop=new Timer(1000/90,this);
 
         new Background(this);
-        // placesPipesTimer.start();
-        //game timer
-        // gameLoop.start();
     }
     public static void startAllTimer(){
         placesPipesTimer.start();
@@ -114,26 +114,25 @@ public class FlappyBird extends JPanel implements ActionListener,KeyListener{
     }
     public void placePipes(){
         Random rand = new Random();
-        int randomPipeY = (int) (pipeY-pipeHeight/4-Math.random()*(pipeHeight/2));
+        int randomPipeY = (int) (pipeY-pipeHeight/6-Math.random()*(pipeHeight/2));
         int openSpace = 150+rand.nextInt((this.getHeight()/4));
         Pipe topPipe = new Pipe(topPipeImg);
-        Pipe botPipe = new Pipe(bottomPipeImg);
+        // Pipe botPipe = new Pipe(bottomPipeImg);
 
-        
         topPipe.y=randomPipeY;
-        botPipe.y=topPipe.y+pipeHeight+openSpace;
-        pipes.add(botPipe);
-        pipes.add(topPipe);
+        pipes.add(topPipe); 
+
+        // botPipe.y=openSpace+pipeHeight;
+        // pipes.add(botPipe);
     }
 
     @Override
     public void paintComponent(Graphics g){
-        super.paintComponent(g);
+        super.paintComponent(g);          
         draw(g);
     }
     public void draw(Graphics g){
         //background
-        // g.drawImage(backgroundImg, 0, 0, BOARD_WIDTH,BOARD_HEIGHT,null);
         g.drawImage(birdImg, bird.x, bird.y, bird.width, bird.height, null);
         for(Pipe pipe : pipes){
             g.drawImage(pipe.img, pipe.x
@@ -182,11 +181,6 @@ public class FlappyBird extends JPanel implements ActionListener,KeyListener{
         
         for(Pipe pipe: pipes){
             pipe.x+=velocityX;
-
-            // if(!pipe.passed&&bird.x>pipe.x+pipe.width){
-            //     pipe.passed=true;
-            //     score+=0.5;
-            // }
 
             if(collision(bird, pipe)){
                 gameOver=true;

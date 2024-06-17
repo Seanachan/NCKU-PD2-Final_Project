@@ -34,6 +34,14 @@
 
 JPanel 的部分有：infoBar, Grids, 格線右邊的數字
 
+#### 遊戲流程
+
+```mermaid
+graph LR
+id1(enter) --> id2[Pop Game Instructions] --Close Tab--> id4[Game Start]--> id6[Bird start dropping]
+
+```
+
 #### 格線
 
 override`drawComponent(Graphics g)`，使格線畫在JPanel上。
@@ -61,9 +69,99 @@ KLineGraph --timeFrame/3--> repaint
 repaint --timeFrame*2--> paintComponent
 ```
 
+#### Class Diagram for Doge Game
 
+```mermaid
+classDiagram
+graph LR
+    class FlappyBird {
+        -int BOARD_WIDTH
+        -int BOARD_HEIGHT
+        -Image backgroundImg
+        -Image birdImg
+        -Image topPipeImg
+        -Image bottomImg
+        -Image bottomPipeImg
+        -int birdX
+        -int birdY
+        -final int birdWidth
+        -final int birdHeight
+        -boolean gameOver
+        -int gameTime
+        -int score
+        -Bird bird
+        -int velocityX
+        -int velocityY
+        -int gravity
+        -List~Pipe~ pipes
+        -Random random
+        -static Timer gameLoop
+        -static Timer placesPipesTimer
+        +FlappyBird()
+        +startAllTimer()
+        +placePipes()
+        +paintComponent(Graphics g)
+        +draw(Graphics g)
+        +move()
+        +boolean collision(Bird bird, Pipe pipe)
+        +void actionPerformed(ActionEvent e)
+        +void keyPressed(KeyEvent e)
+        +void keyTyped(KeyEvent e)
+        +void keyReleased(KeyEvent e)
+    }
 
-## Graphs
+    class Bird {
+        -int x
+        -int y
+        -int width
+        -int height
+        -Image img
+        +Bird(Image img)
+    }
+
+    class Pipe {
+        -int x
+        -int y
+        -int width
+        -int height
+        -Image img
+        -boolean passed
+        +Pipe(Image img)
+    }
+
+    class Background {
+        +Background(FlappyBird game)
+        +void update()
+    }
+
+    class DogeGame {
+        -static JFrame frame
+        -static boolean isComplete
+        -static int score
+        +void launch()
+        +static void main(String[] args)
+    }
+
+    class OsUtils {
+        +static boolean isWindows()
+    }
+
+    class KLineGraph {
+        +static void setKLine(int y)
+        +static void draw(Graphics g)
+        +static Timer gameLoop
+    }
+
+    FlappyBird --> Bird : contains
+    FlappyBird --> Pipe : contains
+    FlappyBird --> Background : uses
+    DogeGame --> FlappyBird : contains
+    FlappyBird --> KLineGraph : uses
+    FlappyBird --> OsUtils : uses
+
+```
+
+#### Class Diagram for dynamic Background
 
 ```mermaid
 classDiagram
