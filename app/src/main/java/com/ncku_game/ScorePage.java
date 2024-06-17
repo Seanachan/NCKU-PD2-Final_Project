@@ -15,7 +15,7 @@ public class ScorePage extends JFrame{
 		String pathHeader = "";
 		try {
 			if(OsUtils.isWindows()){
-				pathHeader = "app/";
+				pathHeader = "";
 			}
 			else{
 				pathHeader = "";

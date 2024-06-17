@@ -41,7 +41,7 @@ public class Game extends Canvas implements Runnable {
         tex = new Texture();
 
         if(OsUtils.isWindows()){
-            currentLevel = new Level( this, "app/src/res/level1.png", "black" );
+            currentLevel = new Level( this, "src/res/level1.png", "black" );
         }else{
             currentLevel = new Level( this, "src/res/level1.png", "black" );
         }

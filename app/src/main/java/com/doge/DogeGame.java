@@ -21,7 +21,7 @@ public class DogeGame {
     public void launch() {
         try {
             if(OsUtils.isWindows()){
-				loadBGM("app/src/res/sound/dogeGame.wav");
+				loadBGM("src/res/sound/dogeGame.wav");
             }
             else{
 				loadBGM("src/res/sound/dogeGame.wav");

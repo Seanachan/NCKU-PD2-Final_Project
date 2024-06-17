@@ -43,7 +43,7 @@ public class HomeScreen4 extends JFrame{
 		heading.add(title);
 		
 		//background
-		ImageIcon background_img = new ImageIcon("app/src/res/image/ncku_game/path4.png");
+		ImageIcon background_img = new ImageIcon("src/res/image/ncku_game/path4.png");
 		Image img = background_img.getImage();
 		Image temp_img = img.getScaledInstance(1000, 800, Image.SCALE_SMOOTH);
 		background_img = new ImageIcon(temp_img);
@@ -77,7 +77,7 @@ public class HomeScreen4 extends JFrame{
 		String pathHeader = "";
 		try {
 			if(OsUtils.isWindows()){
-				pathHeader = "app/";
+				pathHeader = "";
 			}
 			else{
 				pathHeader = "";
@@ -90,5 +90,11 @@ public class HomeScreen4 extends JFrame{
 		gImage.setColor(color);
 		gImage.fillRect(250, y, 70*progress, 25);
 		gImage.drawImage(barImg, 250, y, 280, 30, frame);
+	}
+
+	public static void main(String[] args) {
+		HomeScreen4 screen = new HomeScreen4();
+		screen.setLocationRelativeTo(null);
+		screen.setVisible(true);
 	}
 }

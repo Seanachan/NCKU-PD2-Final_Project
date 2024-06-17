@@ -25,19 +25,19 @@ public class Texture {
         BufferedImage image = null;
         if(OsUtils.isWindows()){
             try {
-                image = ImageIO.read(new FileInputStream("app/src/res/level-items.png"));
+                image = ImageIO.read(new FileInputStream("src/res/level-items.png"));
                 level_items_sprites = new SpriteSheet(image);
     
-                image = ImageIO.read(new FileInputStream("app/src/res/blocks.png"));
+                image = ImageIO.read(new FileInputStream("src/res/blocks.png"));
                 block_sprites = new SpriteSheet(image);
     
-                image = ImageIO.read(new FileInputStream("app/src/res/objects.png"));
+                image = ImageIO.read(new FileInputStream("src/res/objects.png"));
                 object_sprites = new SpriteSheet(image);
     
-                image = ImageIO.read(new FileInputStream("app/src/res/image.png"));
+                image = ImageIO.read(new FileInputStream("src/res/image.png"));
                 player_sprites = new SpriteSheet(image);
     
-                image = ImageIO.read(new FileInputStream("app/src/res/newEnemy.png"));
+                image = ImageIO.read(new FileInputStream("src/res/newEnemy.png"));
                 enemy_sprites = new SpriteSheet(image);
                 
             } catch (Exception e){

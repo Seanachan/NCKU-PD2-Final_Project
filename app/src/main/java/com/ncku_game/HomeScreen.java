@@ -17,7 +17,7 @@ public class HomeScreen extends JFrame{
 	private void init() {
 		try {
 			if(OsUtils.isWindows()){
-				pathHeader = "app/";
+				pathHeader = "";
 			}
 			else{
 				pathHeader = "";

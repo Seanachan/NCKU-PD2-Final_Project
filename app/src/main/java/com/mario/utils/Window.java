@@ -42,7 +42,7 @@ public class Window {
         
         try {
             if(OsUtils.isWindows()){
-				loadBGM("app/src/res/sound/mario.wav");
+				loadBGM("src/res/sound/mario.wav");
             }
             else{
 				loadBGM("src/res/sound/mario.wav");
@@ -100,11 +100,13 @@ public class Window {
 
         // Use HTML to center the text
         String text;
+        int finalScore = score;
         if (win) {
-            text = "<html><div style='text-align: center;'>You Win!<br/>Score: " + score + "</div></html>";
+            text = "<html><div style='text-align: center;'>You Win!<br/>Score: " + finalScore + "</div></html>";
         } else {
-            text = "<html><div style='text-align: center;'>Game Over!<br/>Score: " + score + "</div></html>";
+            text = "<html><div style='text-align: center;'>Game Over!<br/>Score: " + finalScore + "</div></html>";
         }
+        Window.score = finalScore;
         gameOverLabel.setText(text);
         overFrame.add(gameOverLabel);
         overFrame.setVisible(true);

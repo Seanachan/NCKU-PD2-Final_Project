@@ -33,7 +33,7 @@ public class GameCode extends JFrame {
 	public void launch() {
 		try {
             if(OsUtils.isWindows()){
-				loadBGM("app/src/res/sound/piano.wav");
+				loadBGM("src/res/sound/piano.wav");
             }
             else{
 				loadBGM("src/res/sound/piano.wav");
