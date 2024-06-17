@@ -6,6 +6,7 @@ import java.net.*;
 import com.code.GameCode;
 import com.code.Panel;
 import com.doge.DogeGame;
+import com.doge.OsUtils;
 import com.mario.utils.Window;
 import com.mario.Game;
 
@@ -37,12 +38,11 @@ public class PlayerSocket {
     public static boolean sentToServer = false;
     public static boolean receiveFromServer = false;
     public static boolean changePage = true;
-	
 
 	public static void main(String[] args) {
 		    try {
 		    // Connecting to server on port 8000(192.168.56.1/140.116.115.231)
-		    Socket connectionSock = new Socket("192.168.240.119", 8888);
+		    Socket connectionSock = new Socket("140.116.114.112", 8888);
 		    DataOutputStream serverOutput = new DataOutputStream(connectionSock.getOutputStream());
 		    DataInputStream serverInput = new DataInputStream(connectionSock.getInputStream());
 		    // Connection made, sending name.;
@@ -270,12 +270,14 @@ public class PlayerSocket {
 							case 3:{
 								//join third game
 								Window window = new Window(1268, 708, "Super Mario Game Prototype", new Game());
-								while(true) {
-									if(Window.isComplete) {
-											System.out.println("Third game finished");
-										break;
+								while (!Window.isComplete) {
+									try {
+										Thread.sleep(10);
+									} catch (Exception e) {
+										e.printStackTrace();
 									}
 								}
+								System.out.println("Third game finished");
 								tempScore = ("" + Window.score);//record score
 								sentToServer = true;
 								receiveFromServer = true;

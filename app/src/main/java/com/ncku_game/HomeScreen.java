@@ -3,8 +3,11 @@ package com.ncku_game;
 import java.awt.*;
 import javax.swing.*;
 
+import com.doge.OsUtils;
+
 public class HomeScreen extends JFrame{
 	private int gameIndex;
+	private String pathHeader = "";
 	
 	public HomeScreen(int gameIndex) {
 		this.gameIndex = gameIndex;
@@ -12,6 +15,17 @@ public class HomeScreen extends JFrame{
 	}
 	
 	private void init() {
+		try {
+			if(OsUtils.isWindows()){
+				pathHeader = "app/";
+			}
+			else{
+				pathHeader = "";
+			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		this.setSize(1000,800);
 		switch(gameIndex){
 			case 1:{
@@ -72,19 +86,19 @@ public class HomeScreen extends JFrame{
 		ImageIcon background_img;
 		switch(gameIndex){
 			case 1:{
-				background_img = new ImageIcon("app/src/res/image/ncku_game/path1.png");
+				background_img = new ImageIcon(pathHeader + "src/res/image/ncku_game/path1.png");
 				break;
 			}
 			case 2:{
-				background_img = new ImageIcon("app/src/res/image/ncku_game/path2.png");
+				background_img = new ImageIcon(pathHeader + "src/res/image/ncku_game/path2.png");
 				break;
 			}
 			case 3:{
-				background_img = new ImageIcon("app/src/res/image/ncku_game/path3.png");
+				background_img = new ImageIcon(pathHeader + "src/res/image/ncku_game/path3.png");
 				break;
 			}
 			default:{
-				background_img = new ImageIcon("app/src/res/image/ncku_game/path1.png");
+				background_img = new ImageIcon(pathHeader + "src/res/image/ncku_game/path1.png");
 				break;
 			}
 		}

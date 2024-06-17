@@ -7,6 +7,8 @@ import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import javax.swing.*;
 
+import com.doge.OsUtils;
+
 
 public class WaitingScreen extends JFrame{
 	
@@ -15,6 +17,18 @@ public class WaitingScreen extends JFrame{
 	}
 	
 	private void init() {
+		String pathHeader = "";
+		try {
+			if(OsUtils.isWindows()){
+				pathHeader = "app/";
+			}
+			else{
+				pathHeader = "";
+			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		this.setSize(1000,800);
 		this.setTitle("Waiting Room");
 		this.setLocationRelativeTo(null);
@@ -59,7 +73,7 @@ public class WaitingScreen extends JFrame{
 		heading.add(title);
 		
 		//background
-		ImageIcon background_img = new ImageIcon("app/src/res/image/ncku_game/ncku_tree.png");
+		ImageIcon background_img = new ImageIcon(pathHeader + "src/res/image/ncku_game/ncku_tree.png");
 		Image img = background_img.getImage();
 		Image temp_img = img.getScaledInstance(1000, 800, Image.SCALE_SMOOTH);
 		background_img = new ImageIcon(temp_img);

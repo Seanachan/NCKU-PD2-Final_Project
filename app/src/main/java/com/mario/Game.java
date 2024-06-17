@@ -116,5 +116,23 @@ public class Game extends Canvas implements Runnable {
 
     public static void main(String[] args) {
         new Window(1268, 708, "Super Mario Game Prototype", new Game());
+
+        while (!Window.isComplete) {
+            try {
+                Thread.sleep(10);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+        System.out.println("jumped out while loop");
+
+        while (true) {
+            try {
+                Thread.sleep(1000);
+                System.out.println("in loop");
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
     }
 }

@@ -5,6 +5,8 @@ import javax.swing.*;
 import com.mario.Game;
 
 import java.awt.*;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 
 public class Window {
     public static JFrame frame;
@@ -41,10 +43,26 @@ public class Window {
         overFrame.setPreferredSize(new Dimension(width, height));
         overFrame.setMinimumSize(new Dimension(width, height));
         overFrame.setMaximumSize(new Dimension(width, height));
-        overFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        overFrame.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
         overFrame.setResizable(false);
         overFrame.setLocationRelativeTo(null);
         overFrame.setVisible(true);
+        overFrame.addWindowListener(new WindowAdapter() {
+			
+            public void windowClosing(WindowEvent e) {
+                int confirmed = JOptionPane.showConfirmDialog(
+                        null,
+                        "See Your Total scores?",
+                        "You have finished all the games",
+                        JOptionPane.YES_NO_OPTION
+                );
+
+                if (confirmed == JOptionPane.YES_OPTION) {
+                	isComplete=true;
+                    System.out.println("mario isComplete:" + isComplete);
+                }
+            }
+        });
 
         JLabel gameOverLabel = new JLabel();
         gameOverLabel.setBackground(Color.BLACK);
@@ -63,10 +81,7 @@ public class Window {
             text = "<html><div style='text-align: center;'>Game Over!<br/>Score: " + score + "</div></html>";
         }
         gameOverLabel.setText(text);
-
         overFrame.add(gameOverLabel);
         overFrame.setVisible(true);
-
-        isComplete=true;
     }
 }

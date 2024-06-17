@@ -215,7 +215,7 @@ public class Panel extends JPanel implements ActionListener {
 				incorrectFoodY = setIncorrectY(foodY);
 				incorrectIndex = setIncorrectIndex(foodIndex);
 			}
-			if(length == 0 || elapsedSeconds >= 30) { //if(length == 0 || elapsedSeconds >= 180) {
+			if(length == 0 || elapsedSeconds >= 10) { //if(length == 0 || elapsedSeconds >= 180) {
 				isFail = true;
 				isComplete = true;
 			}

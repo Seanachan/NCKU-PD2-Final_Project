@@ -3,8 +3,9 @@ package com.ncku_game;
 import java.awt.*;
 import javax.swing.*;
 
+import com.doge.OsUtils;
+
 public class HomeScreen4 extends JFrame{
-	static Image barImg = Toolkit.getDefaultToolkit().getImage("app/src/res/image/ncku_game/bar.png");
 	int width = 500;
 	int height = 300;
 	public static String[] names = {"p1","p2","p3"};
@@ -73,6 +74,19 @@ public class HomeScreen4 extends JFrame{
 	}
 	
 	public static void drawBar(Graphics gImage, Color color, int progress, int y, Frame frame) {
+		String pathHeader = "";
+		try {
+			if(OsUtils.isWindows()){
+				pathHeader = "app/";
+			}
+			else{
+				pathHeader = "";
+			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		Image barImg = Toolkit.getDefaultToolkit().getImage(pathHeader + "src/res/image/ncku_game/bar.png");
 		gImage.setColor(color);
 		gImage.fillRect(250, y, 70*progress, 25);
 		gImage.drawImage(barImg, 250, y, 280, 30, frame);
