@@ -120,7 +120,7 @@ public class Game extends Canvas implements Runnable {
                 e.printStackTrace();
             }
         }
-        System.out.println("jumped out while loop");
+        System.out.println("jumped out while loop, score: " + Window.score);
         marioGame.closeBGM();
         
     }

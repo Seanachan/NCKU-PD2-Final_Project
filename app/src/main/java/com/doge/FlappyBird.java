@@ -162,6 +162,7 @@ public class FlappyBird extends JPanel implements ActionListener,KeyListener{
 
             if(bird.y>BOARD_HEIGHT/2){
                 score-=1;
+                if(score <= 1) score = 1;
             }
         }
 

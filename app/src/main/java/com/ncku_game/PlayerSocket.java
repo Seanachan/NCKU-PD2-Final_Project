@@ -221,7 +221,8 @@ public class PlayerSocket {
 											gameCode.closeBGM();
 										}
 										realScore = 180 - Panel.elapsedSeconds;								
-										if(Panel.isFail) realScore = 1;									
+										if(Panel.isFail) realScore = 1;		
+										if(realScore < 1) realScore = 1;							
 										break;
 									}
 								}
@@ -245,8 +246,10 @@ public class PlayerSocket {
 										e.printStackTrace();
 									}
 								}
+								int score = DogeGame.score;
+								if(score < 1) score = 1;
 								dogeGame.closeBGM();
-								tempScore = "" + DogeGame.score;
+								tempScore = "" + score;
 								sentToServer = true;
 								receiveFromServer = true;
 								changePage = false;
@@ -280,7 +283,9 @@ public class PlayerSocket {
 								}
 								marioGame.closeBGM();
 								System.out.println("Third game finished");
-								tempScore = ("" + Window.score);//record score
+								int score = Window.score;
+								if(score < 1) score = 1;
+								tempScore = ("" + score);//record score
 								sentToServer = true;
 								receiveFromServer = true;
 								changePage = false;

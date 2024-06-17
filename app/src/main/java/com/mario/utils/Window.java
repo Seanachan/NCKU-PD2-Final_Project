@@ -18,7 +18,7 @@ import java.io.IOException;
 
 public class Window {
     public static JFrame frame;
-    public static int score = 0;
+    public static int score = 1;
     public static boolean isComplete = false;
     public static boolean shouldShowScore=false;
     static int width;
@@ -35,7 +35,7 @@ public class Window {
         frame = new JFrame(title);
         frame.add(game);
         frame.pack();
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
         frame.setResizable(false);
         frame.setLocationRelativeTo(null);
         frame.setVisible(true);       
@@ -83,6 +83,8 @@ public class Window {
                 if (confirmed == JOptionPane.YES_OPTION) {
                 	isComplete=true;
                     System.out.println("mario isComplete:" + isComplete);
+                }else{
+                    isComplete=true;
                 }
             }
         });
