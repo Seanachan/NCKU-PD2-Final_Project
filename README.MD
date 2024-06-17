@@ -649,3 +649,22 @@ graph LR
 ## 4.不熟悉視窗設計
 
 =>上網找尋答案、多次試玩&與隊友討論來Debug
+
+# 專案分工
+
+## 工作分配
+
+Seanachan: Flappy Doge遊戲製作
+JKaiWang: Mario遊戲製作
+Kuan Yi: Snake遊戲製作、Server & Client端設計
+PYCHS: 馬力歐遊戲製作
+
+## 分工方式
+(1) 根據不同功能(遊戲)來分配工作
+(2) 給定規格(一個遊戲該輸入和輸出的參數)，來串接不同功能
+例如：Client端需要將每次遊玩的分數回傳Server，則告訴每一個設計遊戲的組員，需要在class裡算好score member
+例如：遊戲設計上都需要實作launch或start method讓Client呼叫遊戲。
+=> 給定規格後，中間遊戲的部分如何實現都任意設計者，只要最後有輸出該輸出的資訊即可。
+(3) 使用Git工具，組員會在不同分支開發自己的部分，若有更動專案程式(main branch)，則需提醒其他人main已經更新。
+(4) 互相遊玩彼此的遊戲，給出如何改善遊戲的UI/UX
+(5) 彼此詢問意見、協助組員Debug。
