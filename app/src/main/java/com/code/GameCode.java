@@ -12,9 +12,6 @@ import java.awt.event.KeyEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 
-import javax.sound.sampled.AudioInputStream;
-import javax.sound.sampled.AudioSystem;
-import javax.sound.sampled.Clip;
 import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
@@ -23,6 +20,7 @@ import javax.swing.JTextArea;
 public class GameCode extends JFrame {
 	public GameCode() {
 		 setFocusableWindowState(true);
+		 this.setTitle("System.out.print(NCKU)");
 	}
 	Panel p = new Panel();
 	private int width = 1000;
@@ -174,6 +172,10 @@ public class GameCode extends JFrame {
             bgm.close();
             bgm = null;
         }
+	}
+	public static void main(String[] args) {
+		GameCode codeGame =new GameCode();
+		codeGame.launch();
 	}
 	
 }
