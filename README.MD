@@ -673,13 +673,13 @@ graph LR
 
 ## 工作分配
 
-#### Seanachan: Flappy Doge遊戲製作
+#### @Seanachan: Flappy Doge遊戲製作
 
-#### JKaiWang: Mario遊戲製作: Objects, Utils, Main Code
+#### @JKaiWang: Mario遊戲製作: Objects, Utils, Main Code
 
-#### Kuan Yi: Snake遊戲製作、Server & Client端設計
+#### @kuanyi0226: Snake遊戲製作、Server & Client端設計
 
-#### PYCHS: 馬力歐遊戲製作: Framework
+#### @PYCHS: 馬力歐遊戲製作: Framework
 
 ## 分工方式
 
