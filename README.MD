@@ -590,6 +590,15 @@ class Texture {
    Texture ..> HashMap
 ```
 
+### 流程圖
+
+```mermaid
+graph LR
+id1(Start) --> id2{Reach Castle?} --> id3[sum the score] --> id4[Win, Show Score]
+id2 --> id5{liveCount<3?} --yes--> id6[Lose, Show Score]
+id5 --> id2
+```
+
 ## Server 以及 Client端設計
 
 使用Java Socket Programming來建立遊戲系統，Client端程式主要設計遊戲視窗與邏輯、向Server求取其他玩家的資訊，Server端主要在指示Client該跳往哪個遊戲狀態、記錄玩家資訊。
