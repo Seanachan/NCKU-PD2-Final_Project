@@ -590,8 +590,6 @@ class Texture {
    Texture ..> HashMap
 ```
 
-
-
 ## Server 以及 Client端設計
 
 使用Java Socket Programming來建立遊戲系統，Client端程式主要設計遊戲視窗與邏輯、向Server求取其他玩家的資訊，Server端主要在指示Client該跳往哪個遊戲狀態、記錄玩家資訊。
@@ -601,6 +599,7 @@ Client在此專案的流程如下：
 graph LR
 id1(Join the room) --3 players joined--> id2[1st Game] --> id3[2nd Game]--> id4[3rd Game]--Wait for other players--> id5(Ranking)
 ```
+
 #### Class Diagram for server
 
 ```mermaid
@@ -661,11 +660,11 @@ graph LR
 
 #### Seanachan: Flappy Doge遊戲製作
 
-#### JKaiWang: Mario遊戲製作
+#### JKaiWang: Mario遊戲製作: Objects, Utils, Main Code
 
 #### Kuan Yi: Snake遊戲製作、Server & Client端設計
 
-#### PYCHS: 馬力歐遊戲製作
+#### PYCHS: 馬力歐遊戲製作: Framework
 
 ## 分工方式
 
