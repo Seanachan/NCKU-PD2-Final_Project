@@ -426,6 +426,7 @@ class Mushroom {
 ### Frame Work - Class Diagram
 
 ```mermaid
+
 classDiagram
 graph TD
 class Animation {
@@ -540,7 +541,11 @@ class Level {
 
    Level ..> BufferedImageLoader
    Level ..> ItemFactory
- class Texture {
+```
+
+```mermaid
+classDiagram
+class Texture {
        -level_items_sprites: SpriteSheet
        -block_sprites: SpriteSheet
        -object_sprites: SpriteSheet
@@ -587,11 +592,6 @@ class Level {
 
 
 
-方型圓邊：起/始點
-正方形: process
-菱形:decisiion
-平行四邊形: I/O
-
 ## Server 以及 Client端設計
 
 使用Java Socket Programming來建立遊戲系統，Client端程式主要設計遊戲視窗與邏輯、向Server求取其他玩家的資訊，Server端主要在指示Client該跳往哪個遊戲狀態、記錄玩家資訊。
@@ -635,6 +635,7 @@ graph LR
     GameServer --> ClientConnection : uses
     ClientConnection --> Player : uses
 ```
+
 # 困難與解決
 
 ## 1.專案龐大，不知道如何協作
